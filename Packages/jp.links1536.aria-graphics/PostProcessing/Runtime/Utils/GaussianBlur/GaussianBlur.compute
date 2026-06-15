@@ -1,0 +1,56 @@
+﻿#pragma kernel GaussianBlurH
+#pragma kernel GaussianBlurV
+
+Texture2D<float4> _Source;
+RWTexture2D<float4> _Destination;
+SamplerState sampler_LinearClamp;
+
+int _KernelSize;      // 奇数 (例: 15)
+float _Sigma;
+
+float2 _TexelSize;    // (1/width, 1/height)
+
+// ガウス重み計算
+float GaussianWeight(int offset, float sigma)
+{
+	float x = (float)offset;
+	return exp(-(x * x) / (2.0 * sigma * sigma));
+}
+
+// ---- 水平パス ----
+[numthreads(8, 8, 1)]
+void GaussianBlurH(uint3 id : SV_DispatchThreadID)
+{
+	int kernelHalf = uint(_KernelSize) / 2;
+	float4 color = float4(0, 0, 0, 0);
+	float weightSum = 0;
+
+	for (int i = -kernelHalf; i <= kernelHalf; i++)
+	{
+		float w = GaussianWeight(i, _Sigma);
+		float2 uv = (id.xy + float2(i, 0)) * _TexelSize;
+		color += _Source.SampleLevel(sampler_LinearClamp, uv, 0) * w;
+		weightSum += w;
+	}
+
+	_Destination[id.xy] = color / weightSum;
+}
+
+// ---- 垂直パス ----
+[numthreads(8, 8, 1)]
+void GaussianBlurV(uint3 id : SV_DispatchThreadID)
+{
+	int kernelHalf = uint(_KernelSize) / 2;
+	float4 color = float4(0, 0, 0, 0);
+	float weightSum = 0;
+
+	for (int i = -kernelHalf; i <= kernelHalf; i++)
+	{
+		float w = GaussianWeight(i, _Sigma);
+		float2 uv = (id.xy + float2(0, i)) * _TexelSize;
+		color += _Source.SampleLevel(sampler_LinearClamp, uv, 0) * w;
+		weightSum += w;
+	}
+
+	_Destination[id.xy] = color / weightSum;
+}

@@ -1,0 +1,14 @@
+{
+    "name": "Aria.Graphics.ShaderLibrary",
+    "rootNamespace": "Aria.Rendering.Universal.ShaderLibrary",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

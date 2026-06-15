@@ -1,0 +1,14 @@
+{
+  "name": "jp.links1536.aria-graphics",
+  "author": {
+    "name": "links1536"
+  },
+  "version": "1.0.0",
+  "unity": "6000.4",
+  "displayName": "Aria Graphics",
+  "dependencies": {
+    "com.unity.burst": "1.8.29",
+    "com.unity.render-pipelines.core": "17.4.0",
+    "com.unity.render-pipelines.universal": "17.4.0"
+  }
+}
