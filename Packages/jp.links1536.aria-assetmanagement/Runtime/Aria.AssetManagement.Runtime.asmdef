@@ -1,0 +1,20 @@
+{
+    "name": "Aria.AssetManagement.Runtime",
+    "rootNamespace": "Aria.AssetManagement",
+    "references": [
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:c3bc0afe4a069b54aa23296f3c18a871",
+        "GUID:2b78dc61ba35e42c39ba2aabce11b6c4",
+        "GUID:b01fdf6992f6b624a896f8e5d854796c",
+        "GUID:90743b8436124444d8e41d3dae36483b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

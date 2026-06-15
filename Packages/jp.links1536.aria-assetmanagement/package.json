@@ -1,0 +1,16 @@
+{
+  "name": "jp.links1536.aria-assetmanagement",
+  "author": {
+    "name": "links1536"
+  },
+  "version": "1.0.0",
+  "unity": "6000.4",
+  "displayName": "Aria Asset Management",
+  "dependencies": {
+    "com.unity.scriptablebuildpipeline": "2.6.1",
+    "com.cysharp.unitask": "2.5.11",
+    "com.cysharp.yetanotherhttphandler": "1.11.5",
+    "jp.links1536.aria-common": "1.0.0",
+    "jp.links1536.aria-logging": "1.0.0"
+  }
+}
