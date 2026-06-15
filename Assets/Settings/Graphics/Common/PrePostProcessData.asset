@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb8224a75cf64f4589645e3a86f9451, type: 3}
+  m_Name: PrePostProcessData
+  m_EditorClassIdentifier: Aria.Rendering.PostProcessing::Aria.Rendering.PostProcessing.PrePostProcessData
+  m_GaussianBlurShader: {fileID: 7200000, guid: 99152dac382f22a43a30775a272c954d, type: 3}
+  m_BloomUtilShader: {fileID: 4800000, guid: c6ee70f63d7e73042b5977ab626011cf, type: 3}
+  m_GodRayShader: {fileID: 4800000, guid: ed33c7006b12c1d4ca3d64479b1f6c19, type: 3}
+  m_DistortionShader: {fileID: 4800000, guid: e189d3fc402101340bb39b3d0bf053ab, type: 3}
+  m_VolumetricFogShader: {fileID: 4800000, guid: fa3761bbbe5a8f846a19deafb6fbd75a, type: 3}

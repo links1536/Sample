@@ -1,0 +1,208 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8776500773038468909
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda7a02cce514484ab4096631bec2995, type: 3}
+  m_Name: ToneMappingVolume
+  m_EditorClassIdentifier: Aria.Rendering.Universal.PostProcess::Aria.Rendering.Universal.PostProcess.ToneMappingVolume
+  active: 1
+  m_Active:
+    m_OverrideState: 1
+    m_Value: 1
+--- !u!114 &-8072533077538821336
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2db86121404754db890f4c8dfe81b2, type: 3}
+  m_Name: Bloom
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.Bloom
+  active: 1
+  skipIterations:
+    m_OverrideState: 0
+    m_Value: 1
+  threshold:
+    m_OverrideState: 1
+    m_Value: 2
+  intensity:
+    m_OverrideState: 1
+    m_Value: 1
+  scatter:
+    m_OverrideState: 0
+    m_Value: 0.7
+  clamp:
+    m_OverrideState: 0
+    m_Value: 65472
+  tint:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  highQualityFiltering:
+    m_OverrideState: 0
+    m_Value: 0
+  filter:
+    m_OverrideState: 0
+    m_Value: 0
+  downscale:
+    m_OverrideState: 0
+    m_Value: 0
+  maxIterations:
+    m_OverrideState: 0
+    m_Value: 8
+  dirtTexture:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+    dimension: 1
+  dirtIntensity:
+    m_OverrideState: 0
+    m_Value: 0
+--- !u!114 &-2094072062981664983
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7d5356a709d634ca77fac0637f75c7, type: 3}
+  m_Name: BloomEmissionVolume
+  m_EditorClassIdentifier: Aria.Rendering.Universal.PostProcess::Aria.Rendering.Universal.PostProcess.Bloom.BloomEmissionVolume
+  active: 1
+  m_Threshold:
+    m_OverrideState: 1
+    m_Value: 0
+  m_Intensity:
+    m_OverrideState: 1
+    m_Value: 2
+  m_Clamp:
+    m_OverrideState: 0
+    m_Value: 65472
+--- !u!114 &-1261641570264298680
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fedc2cb17e7252e4388d6a08faebc82a, type: 3}
+  m_Name: AnimeDiffusitionVolume
+  m_EditorClassIdentifier: Aria.Rendering.Universal.PostProcessing.Runtime::Aria.Rendering.Universal.PostProcessing.AnimeDiffusitionVolume
+  active: 0
+  m_Active:
+    m_OverrideState: 1
+    m_Value: 1
+  m_SampleScale:
+    m_OverrideState: 1
+    m_Value: 5
+  m_Weight:
+    m_OverrideState: 1
+    m_Value: 0.5
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+  m_Name: GlobalVolumeProfile
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.VolumeProfile
+  components:
+  - {fileID: -8072533077538821336}
+  - {fileID: -2094072062981664983}
+  - {fileID: -8776500773038468909}
+  - {fileID: 1908029333116355674}
+  - {fileID: -1261641570264298680}
+  - {fileID: 4991705269573970178}
+--- !u!114 &1908029333116355674
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82364533e6e460d40a72305f88a94bdd, type: 3}
+  m_Name: GodRayVolume
+  m_EditorClassIdentifier: Aria.Rendering.Universal.PostProcessing.Runtime::Aria.Rendering.Universal.PostProcessing.GodRay.GodRayVolume
+  active: 0
+  m_Threshold:
+    m_OverrideState: 1
+    m_Value: 0
+  m_Distance:
+    m_OverrideState: 0
+    m_Value: 1000
+  m_Intensity:
+    m_OverrideState: 1
+    m_Value: 1
+  m_SampleCount:
+    m_OverrideState: 0
+    m_Value: 28
+  m_NoiseScale:
+    m_OverrideState: 1
+    m_Value: 1
+  m_Density:
+    m_OverrideState: 1
+    m_Value: 1
+  m_Weight:
+    m_OverrideState: 1
+    m_Value: 2
+  m_Decay:
+    m_OverrideState: 0
+    m_Value: 0.9
+  m_ColorLight:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  m_ColorShadow:
+    m_OverrideState: 0
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+  m_EnableFogNoise:
+    m_OverrideState: 0
+    m_Value: 0
+  m_FogNoiseDirection:
+    m_OverrideState: 0
+    m_Value: {x: 0, y: 0, z: 1}
+  m_FogNoiseSpeed:
+    m_OverrideState: 0
+    m_Value: 1
+  m_FogNoiseScale:
+    m_OverrideState: 0
+    m_Value: 0.1
+  m_FogNoiseMin:
+    m_OverrideState: 0
+    m_Value: 0
+  m_FogNoiseMax:
+    m_OverrideState: 0
+    m_Value: 1
+--- !u!114 &4991705269573970178
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c3a724832e201940ba496761d480503, type: 3}
+  m_Name: DistortionVolume
+  m_EditorClassIdentifier: Aria.Rendering.Universal.PostProcessing.Runtime::Aria.Rendering.Universal.PostProcessing.Distortion.DistortionVolume
+  active: 1
+  m_Intensity:
+    m_OverrideState: 1
+    m_Value: 0.1
