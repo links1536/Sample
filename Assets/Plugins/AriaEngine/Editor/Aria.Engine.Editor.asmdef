@@ -1,0 +1,24 @@
+{
+    "name": "Aria.Engine.Editor",
+    "rootNamespace": "Aria.Engine.Editor",
+    "references": [
+        "GUID:2c573e6b271651846a79655161004c5b",
+        "GUID:5c1ff9bd975acec488150743d53a93ca",
+        "GUID:c5ecc461727906345a35491a0440694f",
+        "GUID:90743b8436124444d8e41d3dae36483b",
+        "GUID:8990ebd6403480541a36a91aa71e9e50",
+        "GUID:ac0314fd2ffa0294a879525899d6cf70",
+        "GUID:2448cf12538eeba44964ae7aa08d4798"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
