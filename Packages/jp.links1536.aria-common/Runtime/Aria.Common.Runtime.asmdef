@@ -1,0 +1,17 @@
+{
+    "name": "Aria.Common.Runtime",
+    "rootNamespace": "Aria.Common",
+    "references": [
+        "GUID:2b78dc61ba35e42c39ba2aabce11b6c4",
+        "GUID:b01fdf6992f6b624a896f8e5d854796c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
