@@ -1,0 +1,186 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7202239315895362410
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8aef7d725ab1fe45b55098207ddfaed, type: 3}
+  m_Name: VolumetricFogVolume
+  m_EditorClassIdentifier: Aria.Rendering.Universal.PostProcessing.Runtime::Aria.Rendering.Universal.PostProcessing.VolumetricFog.VolumetricFogVolume
+  active: 0
+  m_ColorLight:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  m_ColorShadow:
+    m_OverrideState: 1
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+  m_SampleCount:
+    m_OverrideState: 1
+    m_Value: 24
+  m_Intensity:
+    m_OverrideState: 1
+    m_Value: 0.5
+  m_Extinction:
+    m_OverrideState: 1
+    m_Value: 0.5
+  m_Near:
+    m_OverrideState: 1
+    m_Value: 0
+  m_Far:
+    m_OverrideState: 1
+    m_Value: 50
+  m_NoiseScale:
+    m_OverrideState: 1
+    m_Value: 1
+  m_BlurKernelSize:
+    m_OverrideState: 1
+    m_Value: 31
+  m_BlurSigma:
+    m_OverrideState: 1
+    m_Value: 10
+  m_EnableFogNoise:
+    m_OverrideState: 1
+    m_Value: 1
+  m_FogNoiseDirection:
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 0.1, z: 1}
+  m_FogNoiseSpeed:
+    m_OverrideState: 0
+    m_Value: 2
+  m_FogNoiseScale:
+    m_OverrideState: 1
+    m_Value: 0.4
+  m_FogNoiseMin:
+    m_OverrideState: 1
+    m_Value: 0
+  m_FogNoiseMax:
+    m_OverrideState: 1
+    m_Value: 1
+--- !u!114 &-809119178482746822
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b402e9887ee54844c9c61cd47af8c87a, type: 3}
+  m_Name: VolumetricCloudVolume
+  m_EditorClassIdentifier: Aria.Rendering.VolumetricCloud::Aria.Rendering.VolumetricCloud.VolumetricCloudVolume
+  active: 1
+  m_Material:
+    m_OverrideState: 1
+    m_Value: {fileID: 2100000, guid: fe9681a7353e1714ca2774927fc8a4c4, type: 2}
+  m_Height:
+    m_OverrideState: 0
+    m_Value: 1000
+  m_Thickness:
+    m_OverrideState: 0
+    m_Value: 1000
+  m_ViewDistance:
+    m_OverrideState: 0
+    m_Value: 10000
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+  m_Name: stage01_volume
+  m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.VolumeProfile
+  components:
+  - {fileID: -7202239315895362410}
+  - {fileID: 3628526093629688789}
+--- !u!114 &996288730566981405
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f0eb212eb654b3294086b88a04ff42c, type: 3}
+  m_Name: WindVolume
+  m_EditorClassIdentifier: Aria.Natures::Aria.WindVolume
+  active: 1
+  m_PowerRange:
+    m_OverrideState: 1
+    m_Value: {x: 0.79999995, y: 1}
+  m_Speed:
+    m_OverrideState: 1
+    m_Value: 1000
+  m_Direction:
+    m_OverrideState: 0
+    m_Value: {x: 1, y: 0, z: 1}
+--- !u!114 &3628526093629688789
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82364533e6e460d40a72305f88a94bdd, type: 3}
+  m_Name: GodRayVolume
+  m_EditorClassIdentifier: AriaGraphics.Runtime::Aria.Rendering.Universal.PostProcessing.GodRay.GodRayVolume
+  active: 0
+  m_Threshold:
+    m_OverrideState: 1
+    m_Value: 0
+  m_Distance:
+    m_OverrideState: 0
+    m_Value: 1000
+  m_Intensity:
+    m_OverrideState: 1
+    m_Value: 1
+  m_SampleCount:
+    m_OverrideState: 0
+    m_Value: 28
+  m_NoiseScale:
+    m_OverrideState: 1
+    m_Value: 1
+  m_Density:
+    m_OverrideState: 1
+    m_Value: 1
+  m_Weight:
+    m_OverrideState: 1
+    m_Value: 2
+  m_Decay:
+    m_OverrideState: 0
+    m_Value: 0.9
+  m_ColorLight:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  m_ColorShadow:
+    m_OverrideState: 0
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+  m_EnableFogNoise:
+    m_OverrideState: 0
+    m_Value: 0
+  m_FogNoiseDirection:
+    m_OverrideState: 0
+    m_Value: {x: 0, y: 0, z: 1}
+  m_FogNoiseSpeed:
+    m_OverrideState: 0
+    m_Value: 1
+  m_FogNoiseScale:
+    m_OverrideState: 0
+    m_Value: 0.1
+  m_FogNoiseMin:
+    m_OverrideState: 0
+    m_Value: 0
+  m_FogNoiseMax:
+    m_OverrideState: 0
+    m_Value: 1
