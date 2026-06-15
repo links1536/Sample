@@ -55,6 +55,9 @@ namespace Aria
 
 		public static async UniTask ChangeSceneAsync(BuiltInScene builtInScene)
 		{
+			if (SceneTransition.TryGetInstance(out var fadeController))
+				await fadeController.FadeOutAsync(default);
+
 			// 一度空のシーンを挟んでリソース解放を行う
 			await LoadEmptySceneAsync();
 
@@ -64,6 +67,9 @@ namespace Aria
 			// シーン切り替え処理
 			if (OnChangeSceneAsync != null)
 				await OnChangeSceneAsync.Invoke(default);
+
+			if (SceneTransition.TryGetInstance(out fadeController))
+				await fadeController.FadeInAsync(default);
 		}
 
 		public static void ChangeScene(string sceneName)
@@ -71,6 +77,9 @@ namespace Aria
 
 		public static async UniTask ChangeSceneAsync(string sceneName)
 		{
+			if (SceneTransition.TryGetInstance(out var fadeController))
+				await fadeController.FadeOutAsync(default);
+
 			// 一度空のシーンを挟んでリソース解放を行う
 			await LoadEmptySceneAsync();
 
@@ -80,6 +89,9 @@ namespace Aria
 			// シーン切り替え処理
 			if (OnChangeSceneAsync != null)
 				await OnChangeSceneAsync.Invoke(default);
+
+			if (SceneTransition.TryGetInstance(out fadeController))
+				await fadeController.FadeInAsync(default);
 		}
 
 		static async UniTask LoadSceneAsyncCore(BuiltInScene builtInScene)
