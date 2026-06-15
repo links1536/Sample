@@ -61,7 +61,7 @@
     },
     "com.unity.burst": {
       "version": "1.8.29",
-      "depth": 2,
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.mathematics": "1.2.1",
@@ -215,6 +215,45 @@
       "dependencies": {
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
+      }
+    },
+    "jp.links1536.aria-assetmanagement": {
+      "version": "file:jp.links1536.aria-assetmanagement",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.unity.scriptablebuildpipeline": "2.6.1",
+        "com.cysharp.unitask": "2.5.11",
+        "com.cysharp.yetanotherhttphandler": "1.11.5",
+        "jp.links1536.aria-common": "1.0.0",
+        "jp.links1536.aria-logging": "1.0.0"
+      }
+    },
+    "jp.links1536.aria-common": {
+      "version": "file:jp.links1536.aria-common",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.cysharp.zlogger": "2.5.10",
+        "jp.links1536.aria-logging": "1.0.0"
+      }
+    },
+    "jp.links1536.aria-graphics": {
+      "version": "file:jp.links1536.aria-graphics",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.unity.burst": "1.8.29",
+        "com.unity.render-pipelines.core": "17.4.0",
+        "com.unity.render-pipelines.universal": "17.4.0"
+      }
+    },
+    "jp.links1536.aria-logging": {
+      "version": "file:jp.links1536.aria-logging",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.cysharp.zlogger": "2.5.10"
       }
     },
     "jp.links1536.license-manager": {
