@@ -105,4 +105,20 @@ InitTestScene*.unity*
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
 
+# NuGet packages
 /Assets/Packages/
+/Assets/Packages.meta
+
+# 自動生成ファイル
+/Assets/Generated/
+/Assets/Generated.meta
+
+# アプリ埋め込み用AssetBundle
+/Assets/StreamingAssets/InAppResource/
+/Assets/StreamingAssets/InAppResource.meta
+
+# カタログ情報
+/Assets/AssetBundle/**/catalog.txt
+/Assets/AssetBundle/**/catalog.txt.meta
+/Assets/InAppResource/**/catalog.txt
+/Assets/InAppResource/**/catalog.txt.meta
