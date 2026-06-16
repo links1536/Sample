@@ -138,6 +138,7 @@ namespace Aria.Engine
 		async UniTask<PreloadData?> PreloadAsync(IAssetBundleProvider bundleProvider, CancellationToken cancellationToken)
 		{
 			using var timer = new StopwatchArea(m_Logger, $"{nameof(AriaAssetProvider)}.{nameof(PreloadAsync)}");
+			await UniTask.SwitchToMainThread();
 
 			var assets = new HashSet<string>();
 			var assetToBundleMap = new Dictionary<string, string>();
