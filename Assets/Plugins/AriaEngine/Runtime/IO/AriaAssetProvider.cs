@@ -297,7 +297,7 @@ namespace Aria.Engine
 			where T : UnityEngine.Object
 			=> m_BundleData != null && m_BundleData.GuidToAssetMap.TryGetValue(guid, out var assetPath)
 			? await LoadBundleAsync<T>(assetPath, cancellationToken)
-			: m_InAppData.GuidToAssetMap != null && m_InAppData.GuidToAssetMap.TryGetValue(guid, out assetPath)
+			: m_InAppData != null && m_InAppData.GuidToAssetMap != null && m_InAppData.GuidToAssetMap.TryGetValue(guid, out assetPath)
 			? await LoadInAppAsync<T>(assetPath, cancellationToken)
 			: null;
 
@@ -317,6 +317,10 @@ namespace Aria.Engine
 				return files;
 			}
 #endif
+
+			if (m_BundleData == null)
+				return null;
+
 			int index = path.IndexOf('/');
 			var root = path.Substring(0, index);
 			var fileList = new List<string>();
