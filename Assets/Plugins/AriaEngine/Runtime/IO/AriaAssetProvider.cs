@@ -275,7 +275,7 @@ namespace Aria.Engine
 				return UnityEditor.AssetDatabase.LoadAssetAtPath<T>(assetPath);
 			}
 #endif
-			if (preloadData == null || !preloadData.AssetToBundleMap.TryGetValue(assetPath, out var bundleName)) {
+			if (preloadData == null || !preloadData.AssetToBundleMap.TryGetValue(assetName, out var bundleName)) {
 				m_Logger.ZLogError($"{assetPath}に一致するAssetBundleが見つかりませんでした");
 				return default;
 			}
@@ -337,18 +337,23 @@ namespace Aria.Engine
 			sceneName += ".unity";
 
 #if UNITY_EDITOR
-			if (!AriaResourceSettings.TryGetInstance(out var ariaResourceSettings))
-				return;
-			var assetPathPrefix = ariaResourceSettings.AssetBundlePath;
-
 			if (LocalLoadMode)
 			{
-				string localPath = assetPathPrefix + sceneName;
-				await UnityEditor.SceneManagement.EditorSceneManager.LoadSceneAsyncInPlayMode(
-					localPath,
-					new UnityEngine.SceneManagement.LoadSceneParameters { loadSceneMode = mode }
-				).ToUniTask(cancellationToken: cancellationToken);
-				return;
+				if (AriaResourceSettings.TryGetInstance(out var ariaResourceSettings))
+				{
+					var assetPathPrefix = ariaResourceSettings.AssetBundlePath;
+					string localPath = assetPathPrefix + sceneName;
+					if (!UnityEditor.AssetDatabase.AssetPathExists(localPath))
+					{
+						assetPathPrefix = ariaResourceSettings.InAppResourcePath;
+						localPath = assetPathPrefix + sceneName;
+					}
+					await UnityEditor.SceneManagement.EditorSceneManager.LoadSceneAsyncInPlayMode(
+						localPath,
+						new UnityEngine.SceneManagement.LoadSceneParameters { loadSceneMode = mode }
+					).ToUniTask(cancellationToken: cancellationToken);
+					return;
+				}
 			}
 #endif
 			IAssetBundleProvider bundleProvider = null;

@@ -28,11 +28,11 @@ namespace AriaEditor
 			assetBundleDirectory = assetBundleDirectory.Replace(@"\", "/").TrimEnd('/') + "/";
 
 			var buildTargetList = new List<AssetBundleBuild>();
-			var dependencyList = new HashSet<string>();
+			var dependencyList = new HashSet<string>(StringComparer.CurrentCultureIgnoreCase);
 
-			var bundleAssetListMap = new Dictionary<string, HashSet<string>>();
-			var bundleContainsSceneMap = new Dictionary<string, bool>();
-			var bundleDirectoryMap = new Dictionary<string, string>();
+			var bundleAssetListMap = new Dictionary<string, HashSet<string>>(100, StringComparer.CurrentCultureIgnoreCase);
+			var bundleContainsSceneMap = new Dictionary<string, bool>(100, StringComparer.CurrentCultureIgnoreCase);
+			var bundleDirectoryMap = new Dictionary<string, string>(100, StringComparer.CurrentCultureIgnoreCase);
 
 			var files = System.IO.Directory.EnumerateFiles(assetBundleDirectory, "*", System.IO.SearchOption.AllDirectories);
 			foreach (var file in files)
@@ -42,10 +42,12 @@ namespace AriaEditor
 				if (normalizedFile.EndsWith(".meta"))
 					continue;
 
-				if (System.IO.Path.GetFileName(normalizedFile) == AssetCatalog.Name)
+				//カタログファイル
+				var fileName = System.IO.Path.GetFileName(normalizedFile);
+				if (string.Equals(fileName, AssetCatalog.Name, StringComparison.CurrentCultureIgnoreCase))
 					continue;
 
-				if (!normalizedFile.StartsWith(assetBundleDirectory))
+				if (!normalizedFile.StartsWith(assetBundleDirectory, StringComparison.CurrentCultureIgnoreCase))
 					continue;
 
 				// AssetBundleフォルダを削る
@@ -91,35 +93,37 @@ namespace AriaEditor
 					// シーンを含む場合はシーン以外のアセットを明示的に含むことができない
 					assetList.RemoveWhere(x => !IsSceneAsset(x));
 				}
-
-				// バンドルにはカタログをつくる
-				AssetCatalog assetCatalog = new AssetCatalog();
-
-				foreach (var path in assetList)
+				else
 				{
-					var guid = AssetDatabase.AssetPathToGUID(path);
-					var assetPath = path;
+					// バンドルにはカタログをつくる
+					AssetCatalog assetCatalog = new AssetCatalog();
 
-					if (assetPath.StartsWith(assetBundleDirectory))
-						assetPath = assetPath.Substring(assetBundleDirectory.Length);
-
-					assetCatalog.Assets.Add(new AssetMap()
+					foreach (var path in assetList)
 					{
-						Path = assetPath,
-						Guid = guid.ToString(),
-					});
+						var guid = AssetDatabase.AssetPathToGUID(path);
+						var assetPath = path;
+
+						if (assetPath.StartsWith(assetBundleDirectory, StringComparison.CurrentCultureIgnoreCase))
+							assetPath = assetPath.Substring(assetBundleDirectory.Length);
+
+						assetCatalog.Assets.Add(new AssetMap()
+						{
+							Path = assetPath,
+							Guid = guid.ToString(),
+						});
+					}
+
+					// アセットリストをファイルに保存
+					string catalogPath = $"{directory}/{AssetCatalog.Name}";
+					string json = JsonUtility.ToJson(assetCatalog);
+					File.WriteAllText(catalogPath, json);
+
+					// Unityに認識させる
+					AssetDatabase.ImportAsset(catalogPath);
+
+					// カタログに追加
+					assetList.Add(catalogPath);
 				}
-
-				// アセットリストをファイルに保存
-				string catalogPath = $"{directory}/{AssetCatalog.Name}";
-				string json = JsonUtility.ToJson(assetCatalog);
-				File.WriteAllText(catalogPath, json);
-
-				// Unityに認識させる
-				AssetDatabase.ImportAsset(catalogPath);
-
-				// カタログに追加
-				assetList.Add(catalogPath);
 
 				// アセットバンドルビルド用情報作成
 				buildTargetList.Add(new AssetBundleBuild()
@@ -174,11 +178,11 @@ namespace AriaEditor
 				return false;
 			if (path.EndsWith(".cs"))
 				return false;
-			if (path.Contains("/Editor/", System.StringComparison.InvariantCultureIgnoreCase))
+			if (path.Contains("/Editor/", System.StringComparison.CurrentCultureIgnoreCase))
 				return false;
-			if (path.Contains("/Editor Resources/", System.StringComparison.InvariantCultureIgnoreCase))
+			if (path.Contains("/Editor Resources/", System.StringComparison.CurrentCultureIgnoreCase))
 				return false;
-			if (path.StartsWith(assetBundleDirectory, System.StringComparison.InvariantCultureIgnoreCase))
+			if (path.StartsWith(assetBundleDirectory, System.StringComparison.CurrentCultureIgnoreCase))
 				return false;
 			return true;
 		}
