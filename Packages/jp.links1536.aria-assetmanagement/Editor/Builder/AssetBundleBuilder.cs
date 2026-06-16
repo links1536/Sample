@@ -1,14 +1,9 @@
 ﻿using System.Text;
-using System.Linq;
-using Aria.AssetManagement;
 using AriaEditor.AssetManagement.Context;
 using AriaEditor.AssetManagement.Task;
 using UnityEditor;
 using UnityEditor.Build.Pipeline;
 using UnityEngine;
-using System.Collections.Generic;
-using UnityEditor.Build.Pipeline.Interfaces;
-using UnityEditor.Build.Pipeline.Tasks;
 
 namespace AriaEditor.AssetManagement
 {
@@ -24,13 +19,14 @@ namespace AriaEditor.AssetManagement
 			{
 				UseCache = userCache,
 				BundleCompression = BuildCompression.LZ4,
+				NonRecursiveDependencies = false,
 			};
 
 			// ビルド対象
 			var content = new AriaBundleBuildContent(buildTargets);
 
 			// ビルド時の処理
-			var buildTaskList = DefaultBuildTasks.Create(DefaultBuildTasks.Preset.AssetBundleBuiltInShaderExtraction);
+			var buildTaskList = DefaultBuildTasks.Create(DefaultBuildTasks.Preset.AssetBundleCompatible);
 			buildTaskList.Add(new CreateBundleGuidTask());
 			buildTaskList.Add(new EncryptBundlesTask());
 			buildTaskList.Add(new CreateBundleCatalogTask());
