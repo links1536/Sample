@@ -16,36 +16,30 @@ namespace AriaEditor
 				BuildTarget.Android => "apk",
 				_ => throw new System.PlatformNotSupportedException()
 			};
-		public static void Build(BuildTarget target)
+		public static void Build(BuildTarget buildTarget)
 		{
 			// 埋め込みリソースビルド
-			if(!AriaInAppBundleBuilder.BuildBundleCore(target, false)) {
+			if(!AriaInAppBundleBuilder.BuildBundleCore(buildTarget, false)) {
 				UnityEngine.Debug.LogError("埋め込みリソースのビルドに失敗しました");
 				return;
 			}
 
-			if (!AriaResourceSettings.TryGetInstance(out var instance)) {
-				UnityEngine.Debug.LogError($"{nameof(AriaResourceSettings)}の取得に失敗しました");
+			// 埋め込み用のリソースをコピーする
+			if (!AriaInAppBundleBuilder.CopyBundle(buildTarget))
+			{
+				UnityEngine.Debug.LogError("埋め込みリソースのコピーに失敗しました");
 				return;
 			}
-			// フォルダコピー
-			string buildCachePath = AriaResourceBuildSettings.instance.InAppCachePath;
-			string publishRootPath = AriaResourceBuildSettings.instance.InAppPublishPath;
-			BuildPath buildPath = new BuildPath(target, buildCachePath, publishRootPath);
-			string inAppResourceDestination = buildPath.GetPublishRoot();
-			var destination = Path.Combine(UnityEngine.Application.streamingAssetsPath, instance.InAppResourceBaseUri);
-			DirectoryUtils.SafeDeleteDirectory(destination);
-			DirectoryUtils.CopyDirectory(inAppResourceDestination, destination);
-			AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+
 
 			// アプリビルド
 			var scenes = EditorBuildSettings.scenes;
 			var option = new BuildPlayerOptions()
 			{
-				locationPathName = System.IO.Path.Combine(System.Environment.CurrentDirectory, "Build", $"{target}.{Extension(target)}"),
+				locationPathName = System.IO.Path.Combine(System.Environment.CurrentDirectory, "Build", $"{buildTarget}.{Extension(buildTarget)}"),
 				scenes = scenes.Select(x => x.path).ToArray(),
-				target = target,
-				targetGroup = BuildPipeline.GetBuildTargetGroup(target),
+				target = buildTarget,
+				targetGroup = BuildPipeline.GetBuildTargetGroup(buildTarget),
 				options = BuildOptions.AutoRunPlayer | BuildOptions.Development | BuildOptions.ConnectWithProfiler,
 			};
 			//CopyAssetBundle.Copy(target);
