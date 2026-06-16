@@ -855,7 +855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926d7035060f17f4d8c84ab46f9393a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp-firstpass::Aria.Engine.AriaAssetProvider
-  LocalLoadMode: 0
+  LocalLoadMode: 1
 --- !u!1 &1199668676
 GameObject:
   m_ObjectHideFlags: 0
