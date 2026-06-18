@@ -61,6 +61,23 @@ namespace AriaEditor
 		static void CopyBundleIOS()
 			=> CopyBundle(BuildTarget.iOS);
 
+		[MenuItem("Build/InAppBundle/Clear Build Cache")]
+		static void BuildBundleClearCache()
+		{
+			// ビルドキャッシュ削除
+			string buildCachePath = AriaResourceBuildSettings.instance.InAppCachePath;
+			string publishRootPath = AriaResourceBuildSettings.instance.InAppPublishPath;
+			DirectoryUtils.SafeDeleteDirectory(buildCachePath);
+			DirectoryUtils.SafeDeleteDirectory(publishRootPath);
+
+			// StreamingAssets の中も消す
+			if (AriaResourceSettings.TryGetInstance(out var resourceSettings))
+			{
+				var destination = Path.Combine(UnityEngine.Application.streamingAssetsPath, resourceSettings.InAppResourceBaseUri);
+				DirectoryUtils.SafeDeleteDirectory(destination);
+			}
+		}
+
 		//=========================================
 		// Core
 		//=========================================

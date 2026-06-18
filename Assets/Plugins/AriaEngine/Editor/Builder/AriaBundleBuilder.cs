@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using Aria.AssetManagement.Data;
+using Aria.Common.IO;
 using AriaEditor.AssetManagement;
 using AriaEditor.AssetManagement.Task;
 using UnityEditor;
@@ -37,6 +38,15 @@ namespace AriaEditor
 		[MenuItem("Build/AssetBundle/iOS/Incremental")]
 		static void BuildBundleIOSIncremental()
 			=> BuildBundleCore(BuildTarget.iOS, true);
+
+		[MenuItem("Build/AssetBundle/Clear Build Cache")]
+		static void BuildBundleClearCache()
+		{
+			string buildCachePath = AriaResourceBuildSettings.instance.BuildCachePath;
+			string publishRootPath = AriaResourceBuildSettings.instance.PublishRootPath;
+			DirectoryUtils.SafeDeleteDirectory(buildCachePath);
+			DirectoryUtils.SafeDeleteDirectory(publishRootPath);
+		}
 
 		static void BuildBundleCore(BuildTarget buildTarget, bool useCache)
 		{
