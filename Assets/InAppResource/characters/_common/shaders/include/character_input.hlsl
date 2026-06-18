@@ -88,6 +88,7 @@ struct ControlTex
 	half specularMask;
 	half rimMask;
 	half highlightMask;
+	half skinMask;
 	half shadowMask;
 	half alphaMask;
 };
@@ -98,14 +99,18 @@ ControlTex SampleControlTex(float2 uv)
 
 	// R:Specular G:Rim B:Highlight
 	control.specularMask = 0;
-	control.rimMask = 1;
+	control.rimMask = 0;
 	control.highlightMask = 0;
+	control.skinMask = 0;
 
 	if (_EnableControlMap1 != 0) {
 		half4 controlColor1 = SAMPLE_TEXTURE2D(_ControlMap1, sampler_ControlMap1, uv);
 		control.specularMask = controlColor1.r;
 		control.rimMask = controlColor1.g;
 		control.highlightMask = controlColor1.b;
+
+		// ベースは肌じゃないほうが都合がいいので、反転して保持する
+		control.skinMask = 1 - controlColor1.a;
 	}
 
 	// R:Shadow mask G:Alpha B:Outline

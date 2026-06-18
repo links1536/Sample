@@ -68,11 +68,13 @@ half4 frag(Varyings input, half facing : VFACE) : SV_Target
 	half specularMask = 1;
 	half rimMask = 1;
 	half highlightMask = 0;
+	half skinMask = 0;
 	if (_EnableControlMap1 != 0) {
 		half4 controlColor1 = SAMPLE_TEXTURE2D(_ControlMap1, sampler_ControlMap1, input.uv);
 		specularMask = controlColor1.r;
 		rimMask = controlColor1.g;
 		highlightMask = controlColor1.b;
+		skinMask = 1.0 - controlColor1.a;
 	}
 
 	// アルファチャンネルのみ使う
@@ -114,5 +116,5 @@ half4 frag(Varyings input, half facing : VFACE) : SV_Target
 	// R・・・キャラ
 	// G・・・Bloom対象
 	// B・・・肌
-	return half4(1, specularIntensity + limLightIntensity, 0, alpha);
+	return half4(1, specularIntensity + limLightIntensity, skinMask, alpha);
 }

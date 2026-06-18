@@ -21,7 +21,7 @@
 		_ShadowThreshold("Shadow Threshold", Range(0, 1)) = 0.63
 
 		_EnableControlMap1("Enable ControlMap1", Float) = 0
-		[NoScaleOffset] _ControlMap1("R:Specular G:Rim B:Highlight", 2D) = "black" {}
+		[NoScaleOffset] _ControlMap1("R:Specular G:Rim B:Highlight A:Invert Skin", 2D) = "black" {}
 
 		_EnableSpecular("Enable Specular", Float) = 1
 		_Smoothness("Smoothness Power", Range(0, 1)) = 1
