@@ -66,7 +66,7 @@ namespace Aria.Common.IO
 		public static bool TryGetDiskFreeSpace(string directoryPath, out ulong availableBytes, out ulong totalBytes, out ulong freeBytes)
 		{
 			try {
-#if !UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+#if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
 				return GetDiskFreeSpaceEx(directoryPath, out availableBytes, out totalBytes, out freeBytes);
 #elif UNITY_ANDROID
 				// AndroidのStatFsクラスをC#から呼び出す
