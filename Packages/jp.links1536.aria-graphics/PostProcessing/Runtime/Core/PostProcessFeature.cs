@@ -35,6 +35,8 @@ namespace Aria.Rendering.Universal.PostProcessing
 		BloomEmissionPass m_BloomEmissionOpaquePass;
 		BloomEmissionPass m_BloomEmissionTransparentPass;
 
+		CharacterMaskPass m_CharacterMaskPass;
+
 		/// <inheritdoc/>
 		public override void Create()
 		{
@@ -47,39 +49,45 @@ namespace Aria.Rendering.Universal.PostProcessing
 			// 各ポストプロセス用パスを作成
 			m_PrePostProcessPass = new PrePostProcessPass(m_DownScaleCount)
 			{
-				renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing
+				renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing,
 			};
 			m_LatePostProcessPass = new LatePostProcessPass()
 			{
-				renderPassEvent = RenderPassEvent.AfterRenderingPostProcessing
+				renderPassEvent = RenderPassEvent.AfterRenderingPostProcessing,
 			};
 
 			// Distortion用パス
 			m_DistortionPass = new DistortionPass()
 			{
-				renderPassEvent = RenderPassEvent.BeforeRenderingTransparents
+				renderPassEvent = RenderPassEvent.BeforeRenderingTransparents,
 			};
 
 			// GodRay用パス
 			m_GodRayPass = new GodRayPass(m_DownScaleCount)
 			{
-				renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing
+				renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing,
 			};
 
 			// VolumetricFog用パス
 			m_VolumetricFogPass = new VolumetricFogPass(m_DownScaleCount)
 			{
-				renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing
+				renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing,
 			};
 
 			// Bloom用描画パス
 			m_BloomEmissionOpaquePass = new BloomEmissionPass(RenderQueueRange.opaque, BloomEmissionPass.RenderingTiming.Opaque)
 			{
-				renderPassEvent = RenderPassEvent.AfterRenderingOpaques
+				renderPassEvent = RenderPassEvent.AfterRenderingOpaques,
 			};
 			m_BloomEmissionTransparentPass = new BloomEmissionPass(RenderQueueRange.transparent, BloomEmissionPass.RenderingTiming.Transparent)
 			{
-				renderPassEvent = RenderPassEvent.AfterRenderingTransparents
+				renderPassEvent = RenderPassEvent.AfterRenderingTransparents,
+			};
+
+			// キャラクターマスク
+			m_CharacterMaskPass = new CharacterMaskPass()
+			{
+				renderPassEvent = RenderPassEvent.AfterRenderingOpaques,
 			};
 		}
 
@@ -134,6 +142,8 @@ namespace Aria.Rendering.Universal.PostProcessing
 
 			renderer.EnqueuePass(m_BloomEmissionOpaquePass);
 			renderer.EnqueuePass(m_BloomEmissionTransparentPass);
+
+			renderer.EnqueuePass(m_CharacterMaskPass);
 		}
 	}
 }
