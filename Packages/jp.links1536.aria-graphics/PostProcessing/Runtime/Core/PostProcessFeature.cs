@@ -1,4 +1,5 @@
 ﻿using Aria.Rendering.Universal.PostProcessing.Bloom;
+using Aria.Rendering.Universal.PostProcessing.CharacterMask;
 using Aria.Rendering.Universal.PostProcessing.Distortion;
 using Aria.Rendering.Universal.PostProcessing.GodRay;
 using Aria.Rendering.Universal.PostProcessing.VolumetricFog;

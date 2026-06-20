@@ -3,7 +3,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.RenderGraphModule;
 using UnityEngine.Rendering.Universal;
 
-namespace Aria.Rendering.Universal.PostProcessing.Bloom
+namespace Aria.Rendering.Universal.PostProcessing.CharacterMask
 {
 	partial class CharacterMaskPass : ScriptableRenderPass
 	{
