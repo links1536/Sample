@@ -19,6 +19,8 @@ namespace Aria.Rendering.Universal.PostProcessing.CharacterMask
 		const string CharacterMaskTextureName = "_CharacterMaskTexture";
 		public static readonly int CharacterMaskTextureId = Shader.PropertyToID(CharacterMaskTextureName);
 
+		static readonly int CharacterMaskParamsId = Shader.PropertyToID("_CharacterMaskParams");
+
 		MaterialPropertyBlock m_Properties;
 
 		public CharacterMaskPass()

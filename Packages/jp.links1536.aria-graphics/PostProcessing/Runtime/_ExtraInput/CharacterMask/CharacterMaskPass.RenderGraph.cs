@@ -15,6 +15,11 @@ namespace Aria.Rendering.Universal.PostProcessing.CharacterMask
 			internal MaterialPropertyBlock Properties;
 		}
 
+		class SetGlobalValuePassData
+		{
+			internal CharacterMaskVolume CharacterMaskVolume;
+		}
+
 		public override void RecordRenderGraph(RenderGraph renderGraph, ContextContainer frameData)
 		{
 			// 各リソースデータ取得
@@ -24,6 +29,10 @@ namespace Aria.Rendering.Universal.PostProcessing.CharacterMask
 			var renderingData = frameData.Get<UniversalRenderingData>();
 			var extraInputsData = frameData.GetOrCreate<ExtraInputsResourceData>();
 			var ariaProcessResourceData = frameData.Get<AriaPostProcessResourceData>();
+
+			var characterMaskVolume = VolumeManager.instance.stack.GetComponent<CharacterMaskVolume>();
+			if (characterMaskVolume == null || !characterMaskVolume.active || !characterMaskVolume.IsActive())
+				return;
 
 			if (!AriaPostProcessUtils.IsPostProcessTarget(cameraData))
 				return;
@@ -88,6 +97,25 @@ namespace Aria.Rendering.Universal.PostProcessing.CharacterMask
 
 				// 描画命令を予約したので、BloomMarkを覚えておく
 				extraInputsData.CharacterMask = colorTexture;
+			}
+
+			// SetRenderFunc 内でのグローバルの書き換えがあるので、一応パスを分けておく
+			using (var builder = renderGraph.AddUnsafePass<SetGlobalValuePassData>(passName, out var passData, profilingSampler))
+			{
+				passData.CharacterMaskVolume = characterMaskVolume;
+
+				builder.AllowPassCulling(false);
+				builder.AllowGlobalStateModification(true);
+				builder.SetRenderFunc<SetGlobalValuePassData>(static (passData, context) =>
+				{
+					var characterMaskVolume = passData.CharacterMaskVolume;
+					float specularMask = characterMaskVolume.Character;
+					float rimMask = characterMaskVolume.RimMask;
+					float skin = characterMaskVolume.Skin;
+					float character = characterMaskVolume.Character;
+					var characterMaskParams = new Vector4(specularMask, rimMask, skin, character);
+					context.cmd.SetGlobalVector(CharacterMaskParamsId, characterMaskParams);
+				});
 			}
 		}
 	}
