@@ -64,6 +64,14 @@ Varyings vert (Attributes input)
 
 half4 frag(Varyings input, half facing : VFACE) : SV_Target
 {
+	// 法線取得
+	half3 normalWS = SampleNormalWS(input.uv, input.normalWS, input.tangentWS.xyz, input.tangentWS.w, facing);
+	half3 lightDirectionWS = GetLightDirectionWS(input.positionWS.xyz);
+	half3 viewDirectionWS = GetWorldSpaceNormalizeViewDir(input.positionWS);
+
+	// ベクトルの計算
+	VectorData vectorData = ComputeVectorData(normalWS, lightDirectionWS, viewDirectionWS);
+
 	// R:Specular G:Rim B:Highlight
 	half specularMask = 1;
 	half rimMask = 1;
@@ -85,18 +93,15 @@ half4 frag(Varyings input, half facing : VFACE) : SV_Target
 	clip(alpha - _AlphaClip);
 #endif
 
-	// 法線取得
-	half3 normalWS = SampleNormalWS(input.uv, input.normalWS, input.tangentWS.xyz, input.tangentWS.w, facing);
-
 	// スペキュラ―
 	half specularIntensity = 0;
 	if (_EnableSpecular != 0) {
-		half3 indirectLighting = SampleSH(normalWS);
-		half3 specLightDir = normalize(GetLightDirectionWS(input.positionWS));
-		half3 view = GetWorldSpaceNormalizeViewDir(input.positionWS);
-		half3 lightView = normalize(specLightDir + view);
-		half  specular = pow(saturate(dot(lightView, normalWS)), _Smoothness);
-		specularIntensity += specular * Luminance(indirectLighting) * specularMask;
+		half perceptualRoughness = PerceptualSmoothnessToPerceptualRoughness(_Smoothness);
+		half roughness = max(PerceptualRoughnessToRoughness(perceptualRoughness), HALF_MIN_SQRT);
+		half specular = D_GGXNoPI(vectorData.NdotH, roughness);
+		//half specular = D_GGX(vectorData.NdotH, roughness);
+		//half specular = G_MaskingSmithGGX(vectorData.NdotH, roughness);
+		specularIntensity += specular * specularMask;
 	}
 
 
@@ -113,8 +118,10 @@ half4 frag(Varyings input, half facing : VFACE) : SV_Target
 	alpha *= input.depthFade;
 #endif
 
-	// R・・・キャラ
-	// G・・・Bloom対象
-	// B・・・肌
-	return half4(1, specularIntensity + limLightIntensity, skinMask, alpha);
+	return half4(
+		saturate(specularIntensity),
+		saturate(limLightIntensity),
+		saturate(skinMask),
+		alpha
+	);
 }
