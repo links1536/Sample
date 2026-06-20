@@ -10,6 +10,8 @@
 		#include_with_pragmas "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRenderingKeywords.hlsl"
 		#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/FoveatedRendering.hlsl"
 
+		#include "Packages/jp.links1536.aria-graphics/ShaderLibrary/PostProcessing/DeclareCharacterMaskTexture.hlsl"
+
 		// 通常のBloom用
 		TEXTURE2D_X(_SourceTexLowMip);
 		float4 _SourceTexLowMip_TexelSize;
@@ -69,7 +71,7 @@
 			return color.xyz;
 		}
 
-		half3 SampleColor(TEXTURE2D_X_PARAM(textureMap, textureSampler), float2 texelSize, float2 uv, float4 params)
+		half3 SampleColor(TEXTURE2D_X_PARAM(textureMap, textureSampler), float2 texelSize, float2 uv)
 		{
 		#if _BLOOM_HQ
 			half3 A = SamplePrefilter(TEXTURE2D_X_ARGS(textureMap, textureSampler), texelSize, uv, float2(-1.0, -1.0));
@@ -96,7 +98,12 @@
 		#else
 			half3 color = SamplePrefilter(TEXTURE2D_X_ARGS(textureMap, textureSampler), texelSize, uv, float2(0,0));
 		#endif
-		
+
+			return color;
+		}
+
+		half3 ColorPrefilter(half3 color, float4 params)
+		{
 			float ClampMax = params.y;
 			float Threshold = params.z;
 			float ThresholdKnee = params.w;
@@ -131,8 +138,16 @@
 #endif
 			half3 color = 0;
 
-			color += SampleColor(TEXTURE2D_X_ARGS(_BlitTexture, sampler_LinearClamp), _BlitTexture_TexelSize.xy, uv, _Params);
-			color += SampleColor(TEXTURE2D_X_ARGS(_BloomEmissionTexture, sampler_LinearClamp), _BloomEmissionTexture_TexelSize.xy, uv, _BloomEmissionParams) * _BloomEmissionParams.x;
+			CharacterMask characterMask = SampleCharacterMask(uv);
+
+			half3 screenColor = SampleColor(TEXTURE2D_X_ARGS(_BlitTexture, sampler_LinearClamp), _BlitTexture_TexelSize.xy, uv);
+
+			half3 emissionColor = SampleColor(TEXTURE2D_X_ARGS(_BloomEmissionTexture, sampler_LinearClamp), _BloomEmissionTexture_TexelSize.xy, uv);
+			emissionColor = lerp(emissionColor, screenColor * 10, characterMask.rimLightMask);
+			screenColor = lerp(screenColor, 0, characterMask.characterMask);
+
+			color += ColorPrefilter(screenColor, _Params);
+			color += ColorPrefilter(emissionColor, _BloomEmissionParams) * _BloomEmissionParams.x;
 
 			return EncodeHDR(color);
 		}
