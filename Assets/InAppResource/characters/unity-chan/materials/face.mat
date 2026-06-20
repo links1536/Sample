@@ -94,7 +94,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FaceShadowMaskTexture:
-        m_Texture: {fileID: 2800000, guid: 6e8e8b8cf54092f42bdb4f7f42a8982b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7065d74bd8425b64c8a134fd6997c009, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FalloffSampler:
@@ -418,7 +418,7 @@ Material:
     - _SecondShadeVisible: 1
     - _Set_SystemShadowsToBase: 1
     - _ShadeColor_Step: 0.5
-    - _ShadowSoftness: 0.01
+    - _ShadowSoftness: 0.005
     - _ShadowThreshold: 0.5
     - _Smoothness: 0.5
     - _SmoothnessRemapMax: 1

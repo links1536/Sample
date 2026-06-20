@@ -12,14 +12,16 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - ALPHACLIP_ON
   - DEPTH_OFFSET_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2450
   stringTagMap:
     IgnoreProjection: False
+    RenderType: TransparentCutout
   disabledShaderPasses:
   - Outline
   m_LockedProperties: 
@@ -71,7 +73,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ControlMap1:
-        m_Texture: {fileID: 2800000, guid: ba02bbafc1ff22c4e89d4e3715eab343, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1f391813812b7964bb5c4deaa82fd07a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ControlMap2:
@@ -308,7 +310,7 @@ Material:
     - _EnableControlMap2: 0
     - _EnableFogOnTransparent: 1
     - _EnableGeometricSpecularAA: 0
-    - _EnableHighLight: 0
+    - _EnableHighLight: 1
     - _EnableLighting: 1
     - _EnableMatCapMap: 0
     - _EnableOutline: 0
@@ -395,7 +397,7 @@ Material:
     - _PPDPrimitiveWidth: 1
     - _ReceivesSSR: 1
     - _RefractionModel: 0
-    - _RenderingMode: 0
+    - _RenderingMode: 1
     - _RimIntensity: 1000
     - _RimLight: 0
     - _RimLightOverridden: 0
