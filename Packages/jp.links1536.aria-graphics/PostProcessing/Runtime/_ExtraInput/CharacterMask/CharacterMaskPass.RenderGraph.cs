@@ -47,6 +47,7 @@ namespace Aria.Rendering.Universal.PostProcessing.CharacterMask
 				markColorTextureDesc.clearBuffer = true;
 				markColorTextureDesc.clearColor = Color.clear;
 				markColorTextureDesc.filterMode = FilterMode.Bilinear;
+				markColorTextureDesc.colorFormat = UnityEngine.Experimental.Rendering.GraphicsFormat.R8G8B8A8_UNorm;
 				markColorTextureDesc.wrapMode = TextureWrapMode.Clamp;
 
 				// Depth用設定
