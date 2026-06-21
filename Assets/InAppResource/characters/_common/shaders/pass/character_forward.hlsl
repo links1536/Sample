@@ -142,10 +142,10 @@ half4 frag(Varyings input, half facing : VFACE) : SV_Target
 
 
 	// リムライト
-	if (_EnableRimLight != 0) {
-		// 元の色を乗せて加算する
-		finalColor.rgb +=  RimLight(input.positionWS.xyz, normalWS, lightAtten) * control.rimMask;
-	}
+	//if (_EnableRimLight != 0) {
+	//	// 元の色を乗せて加算する
+	//	finalColor.rgb +=  RimLight(input.positionWS.xyz, normalWS, lightAtten) * control.rimMask;
+	//}
 
 	// 霧を適用
 	finalColor.rgb = MixFogWithAlpha(finalColor.rgb, input.fogFactor);

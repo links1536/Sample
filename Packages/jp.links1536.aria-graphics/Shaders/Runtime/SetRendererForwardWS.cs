@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Pool;
 
 namespace Links
 {
@@ -22,7 +23,9 @@ namespace Links
 			if (m_Renderers == null)
 				return;
 
-			foreach(var renderer in m_Renderers)
+			bool isPlaying = Application.isPlaying;
+
+			foreach (var renderer in m_Renderers)
 			{
 
 				if (renderer == null)
@@ -33,12 +36,27 @@ namespace Links
 				var up = transform.up;
 				var right = transform.right;
 
-				// 正式には MaterialPropertyBlock ではなく、Materialへ直接代入する必要がある
-				m_Properties.SetVector(ForwardId, forward);
-				m_Properties.SetVector(UpId, up);
-				m_Properties.SetVector(RightId, right);
+				if (isPlaying)
+				{
+					using var pool = ListPool<Material>.Get(out var list);
+					renderer.GetMaterials(list);
+					foreach (var material in list)
+					{
+						material.SetVector(ForwardId, forward);
+						material.SetVector(UpId, up);
+						material.SetVector(RightId, right);
+					}
+					renderer.SetMaterials(list);
+				}
+				else
+				{
+					// 正式には MaterialPropertyBlock ではなく、Materialへ直接代入する必要がある
+					m_Properties.SetVector(ForwardId, forward);
+					m_Properties.SetVector(UpId, up);
+					m_Properties.SetVector(RightId, right);
 
-				renderer.SetPropertyBlock(m_Properties);
+					renderer.SetPropertyBlock(m_Properties);
+				}
 			}
 		}
 	}

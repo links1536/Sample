@@ -42,6 +42,7 @@
 		#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareDepthTexture.hlsl"
 
 		#include "Packages/jp.links1536.aria-graphics/ShaderLibrary/PostProcessing/EncodeHDR.hlsl"
+		#include "Packages/jp.links1536.aria-graphics/ShaderLibrary/PostProcessing/DeclareCharacterMaskTexture.hlsl"
 		#include "Packages/jp.links1536.aria-graphics/ShaderLibrary/SamplingTexture.hlsl"
 		#include "ToneMapping/Tonemapping.hlsl"
 
@@ -57,7 +58,6 @@
 		TEXTURE2D_X(_GodRayTexture);
 
 		TEXTURE2D_X(_Bloom_Texture);
-		TEXTURE2D_X(_BloomEmissionTexture);
 
 		TEXTURE2D(_LensDirt_Texture);
 		TEXTURE2D(_Grain_Texture);
@@ -269,17 +269,12 @@
 					half3 bloom = SAMPLE_TEXTURE2D_X(_Bloom_Texture, sampler_LinearClamp, SCREEN_COORD_REMOVE_SCALEBIAS(uvBloom)).xyz;
 				#endif
 
-				//return SAMPLE_TEXTURE2D_X(_BloomEmissionTexture, sampler_LinearClamp, SCREEN_COORD_REMOVE_SCALEBIAS(uvBloom));
-
 				#if UNITY_COLORSPACE_GAMMA
 					bloom *= bloom; // γ to linear
 				#endif
 
 				bloom *= BloomIntensity * BloomTint;
-				color += bloom * BloomTint;
-				// 1-(1-基本色)/合成色
-				//half bloomAlpha = Luminance(bloom);
-				//color = color * (1 - bloomAlpha) + bloom;
+				color += bloom;
 
 				#if defined(BLOOM_DIRT)
 				{
