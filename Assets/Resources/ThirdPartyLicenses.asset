@@ -381,27 +381,23 @@ MonoBehaviour:
     SourcePath: Packages/com.unity.ugui
     IsRepositoryMaterialized: 0
     IsMetadataOnly: 0
-  m_MissingUnityPackageEntries:
   - Name: jp.links1536.aria-assetmanagement 1.0.0
-    PackagePath: Packages/jp.links1536.aria-assetmanagement
-    Reason: "\u30D1\u30C3\u30B1\u30FC\u30B8\u76F4\u4E0B\u307E\u305F\u306F GitHub
-      \u30EA\u30DD\u30B8\u30C8\u30EA\u76F4\u4E0B\u306B\u5BFE\u5FDC\u3059\u308B LICENSE
-      \u304C\u898B\u3064\u304B\u308A\u307E\u305B\u3093"
     LicenseFile: {fileID: 0}
-    ThirdPartyNoticesFile: {fileID: 0}
+    ThirdPartyNoticesFile: {fileID: 4900000, guid: dbc27056f5a4a2d47bc3a13bc94a5d74, type: 3}
+    LicenseText: 
+    SourcePath: Packages/jp.links1536.aria-assetmanagement
     IsRepositoryMaterialized: 1
-    HasMetadataLicense: 0
+    IsMetadataOnly: 0
+  - Name: jp.links1536.aria-graphics 1.0.0
+    LicenseFile: {fileID: 0}
+    ThirdPartyNoticesFile: {fileID: 4900000, guid: 4e5324b75c4a4b84bb49ef43844356e9, type: 3}
+    LicenseText: 
+    SourcePath: Packages/jp.links1536.aria-graphics
+    IsRepositoryMaterialized: 1
+    IsMetadataOnly: 0
+  m_MissingUnityPackageEntries:
   - Name: jp.links1536.aria-common 1.0.0
     PackagePath: Packages/jp.links1536.aria-common
-    Reason: "\u30D1\u30C3\u30B1\u30FC\u30B8\u76F4\u4E0B\u307E\u305F\u306F GitHub
-      \u30EA\u30DD\u30B8\u30C8\u30EA\u76F4\u4E0B\u306B\u5BFE\u5FDC\u3059\u308B LICENSE
-      \u304C\u898B\u3064\u304B\u308A\u307E\u305B\u3093"
-    LicenseFile: {fileID: 0}
-    ThirdPartyNoticesFile: {fileID: 0}
-    IsRepositoryMaterialized: 1
-    HasMetadataLicense: 0
-  - Name: jp.links1536.aria-graphics 1.0.0
-    PackagePath: Packages/jp.links1536.aria-graphics
     Reason: "\u30D1\u30C3\u30B1\u30FC\u30B8\u76F4\u4E0B\u307E\u305F\u306F GitHub
       \u30EA\u30DD\u30B8\u30C8\u30EA\u76F4\u4E0B\u306B\u5BFE\u5FDC\u3059\u308B LICENSE
       \u304C\u898B\u3064\u304B\u308A\u307E\u305B\u3093"
