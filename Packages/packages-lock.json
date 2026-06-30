@@ -285,10 +285,11 @@
       }
     },
     "jp.links1536.license-manager": {
-      "version": "file:jp.links1536.license-manager",
+      "version": "https://github.com/links1536/LicenseManager.git?path=Packages/jp.links1536.license-manager",
       "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "329cba32a9a79dee481698c46cf663158dbab326"
     },
     "com.unity.modules.adaptiveperformance": {
       "version": "1.0.0",

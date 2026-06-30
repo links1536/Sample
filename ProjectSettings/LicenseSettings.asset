@@ -196,7 +196,7 @@ MonoBehaviour:
     LicenseType: 
     LicenseFile: {fileID: 0}
     ThirdPartyNoticesFile: {fileID: 0}
-    IsLocalPackages: 1
+    IsLocalPackages: 0
     IsInRuntime: 1
   - Id: jp.links1536.aria-assetmanagement
     Name: Aria Asset Management
