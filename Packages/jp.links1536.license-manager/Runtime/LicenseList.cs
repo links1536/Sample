@@ -94,6 +94,7 @@ namespace Links.Licenses
 				foreach (var entry in licenseList)
 				{
 					AddText(HorizontalLine, HorizontalLine);
+					AddText(entry.ComponentName, entry.ComponentName);
 					AddText("LicenseText", entry.LicenseText);
 				}
 			}
