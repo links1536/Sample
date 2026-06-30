@@ -1,0 +1,421 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 53
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2632d639191bb6e478ac426636d78849, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Links.LicenseManager.Editor::Links.Licenses.Settings.LicenseSettings
+  m_UnmanagedAssets:
+  - Id: Unity-Chan
+    Name: Unity-Chan
+    CopyrightList: []
+    PackagePath: 
+    LicenseType: 
+    LicenseFile: {fileID: 4900000, guid: 89a810f56a1cf0b4394c77bf1975f243, type: 3}
+    ThirdPartyNoticesFile: {fileID: 0}
+    IsLocalPackages: 1
+    IsInRuntime: 0
+  - Id: 'M PLUS 1 '
+    Name: 'M PLUS 1 '
+    CopyrightList: []
+    PackagePath: 
+    LicenseType: 
+    LicenseFile: {fileID: 4900000, guid: e40294ecf7be3124c998ed27f5466116, type: 3}
+    ThirdPartyNoticesFile: {fileID: 0}
+    IsLocalPackages: 1
+    IsInRuntime: 0
+  m_UnityPackages:
+  - Id: com.cysharp.unitask
+    Name: UniTask
+    CopyrightList:
+    - Cysharp, Inc.
+    PackagePath: Packages/com.cysharp.unitask
+    LicenseType: MIT
+    LicenseFile: {fileID: 0}
+    ThirdPartyNoticesFile: {fileID: 0}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: com.cysharp.yetanotherhttphandler
+    Name: YetAnotherHttpHandler
+    CopyrightList:
+    - Cysharp, Inc.
+    PackagePath: Packages/com.cysharp.yetanotherhttphandler
+    LicenseType: MIT
+    LicenseFile: {fileID: 0}
+    ThirdPartyNoticesFile: {fileID: 0}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: com.cysharp.zlogger
+    Name: ZLogger.Unity
+    CopyrightList:
+    - Cysharp, Inc.
+    PackagePath: Packages/com.cysharp.zlogger
+    LicenseType: MIT
+    LicenseFile: {fileID: 0}
+    ThirdPartyNoticesFile: {fileID: 0}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: com.unity.ai.navigation
+    Name: AI Navigation
+    CopyrightList: []
+    PackagePath: Packages/com.unity.ai.navigation
+    LicenseType: 
+    LicenseFile: {fileID: 4900000, guid: af8f9a7f066204789819c6a616afe2c0, type: 3}
+    ThirdPartyNoticesFile: {fileID: 0}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: com.unity.cinemachine
+    Name: Cinemachine
+    CopyrightList: []
+    PackagePath: Packages/com.unity.cinemachine
+    LicenseType: 
+    LicenseFile: {fileID: 4900000, guid: 3958e97119b89b14893728476c991114, type: 3}
+    ThirdPartyNoticesFile: {fileID: 4900000, guid: 2764ce5fee86e464f92b661bbaa7ed45, type: 3}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: com.unity.splines
+    Name: Splines
+    CopyrightList: []
+    PackagePath: Packages/com.unity.splines
+    LicenseType: 
+    LicenseFile: {fileID: 4900000, guid: 2808bd25b3f651d4d9ed886d32d96e95, type: 3}
+    ThirdPartyNoticesFile: {fileID: 0}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: com.unity.mathematics
+    Name: Mathematics
+    CopyrightList: []
+    PackagePath: Packages/com.unity.mathematics
+    LicenseType: 
+    LicenseFile: {fileID: 4900000, guid: a7f87992cd1d44040ae42b05e5fbdaa5, type: 3}
+    ThirdPartyNoticesFile: {fileID: 0}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: com.unity.inputsystem
+    Name: Input System
+    CopyrightList: []
+    PackagePath: Packages/com.unity.inputsystem
+    LicenseType: 
+    LicenseFile: {fileID: 4900000, guid: 9166eed4756114bdaa498aca2df93e19, type: 3}
+    ThirdPartyNoticesFile: {fileID: 0}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: com.unity.render-pipelines.universal
+    Name: Universal Render Pipeline
+    CopyrightList: []
+    PackagePath: Packages/com.unity.render-pipelines.universal
+    LicenseType: 
+    LicenseFile: {fileID: 4900000, guid: eecaac92122b4407f8bf4998e8708aee, type: 3}
+    ThirdPartyNoticesFile: {fileID: 4900000, guid: feee7af7dbba54f55abd26b21ca99071, type: 3}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: com.unity.render-pipelines.core
+    Name: Scriptable Render Pipeline Core
+    CopyrightList: []
+    PackagePath: Packages/com.unity.render-pipelines.core
+    LicenseType: 
+    LicenseFile: {fileID: 4900000, guid: ba4b5cdf8466e485ab792e0e4e45af25, type: 3}
+    ThirdPartyNoticesFile: {fileID: 4900000, guid: eefc64b67f7aad040905b2000990f5f3, type: 3}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: com.unity.burst
+    Name: Burst
+    CopyrightList: []
+    PackagePath: Packages/com.unity.burst
+    LicenseType: 
+    LicenseFile: {fileID: 4900000, guid: 3adebabc9c53348aab08029333dba930, type: 3}
+    ThirdPartyNoticesFile: {fileID: 4900000, guid: 28c762070e0d3359b18a59f9402d5013, type: 3}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: com.unity.ugui
+    Name: uGUI
+    CopyrightList: []
+    PackagePath: Packages/com.unity.ugui
+    LicenseType: 
+    LicenseFile: {fileID: 4900000, guid: 4d3d51749e989f747b2674e0b4d9b3d7, type: 3}
+    ThirdPartyNoticesFile: {fileID: 0}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: com.unity.collections
+    Name: Collections
+    CopyrightList: []
+    PackagePath: Packages/com.unity.collections
+    LicenseType: 
+    LicenseFile: {fileID: 4900000, guid: 568f02fe7676e4d659782d6038df91de, type: 3}
+    ThirdPartyNoticesFile: {fileID: 0}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: com.unity.shadergraph
+    Name: Shader Graph
+    CopyrightList: []
+    PackagePath: Packages/com.unity.shadergraph
+    LicenseType: 
+    LicenseFile: {fileID: 4900000, guid: 3627da0ec84594020b79e02cec8d0b41, type: 3}
+    ThirdPartyNoticesFile: {fileID: 0}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: com.unity.render-pipelines.universal-config
+    Name: Universal Render Pipeline Config
+    CopyrightList: []
+    PackagePath: Packages/com.unity.render-pipelines.universal-config
+    LicenseType: 
+    LicenseFile: {fileID: 4900000, guid: 8a8d9e4408d3f1247884b71451a0abcf, type: 3}
+    ThirdPartyNoticesFile: {fileID: 0}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: com.unity.scriptablebuildpipeline
+    Name: Scriptable Build Pipeline
+    CopyrightList: []
+    PackagePath: Packages/com.unity.scriptablebuildpipeline
+    LicenseType: 
+    LicenseFile: {fileID: 4900000, guid: 93c1484372a5f5448ab6371fdb212c20, type: 3}
+    ThirdPartyNoticesFile: {fileID: 0}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: com.unity.timeline
+    Name: Timeline
+    CopyrightList: []
+    PackagePath: Packages/com.unity.timeline
+    LicenseType: 
+    LicenseFile: {fileID: 4900000, guid: 6ecb9e17e44feb84cb80451fa27b09fe, type: 3}
+    ThirdPartyNoticesFile: {fileID: 0}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: jp.links1536.license-manager
+    Name: License Manager
+    CopyrightList:
+    - links1536
+    PackagePath: Packages/jp.links1536.license-manager
+    LicenseType: 
+    LicenseFile: {fileID: 0}
+    ThirdPartyNoticesFile: {fileID: 0}
+    IsLocalPackages: 1
+    IsInRuntime: 1
+  - Id: jp.links1536.aria-assetmanagement
+    Name: Aria Asset Management
+    CopyrightList:
+    - links1536
+    PackagePath: Packages/jp.links1536.aria-assetmanagement
+    LicenseType: 
+    LicenseFile: {fileID: 0}
+    ThirdPartyNoticesFile: {fileID: 4900000, guid: e128c01ad2a3d6f44aba046da5ee0adb, type: 3}
+    IsLocalPackages: 1
+    IsInRuntime: 1
+  - Id: jp.links1536.aria-common
+    Name: Aria Common
+    CopyrightList:
+    - links1536
+    PackagePath: Packages/jp.links1536.aria-common
+    LicenseType: 
+    LicenseFile: {fileID: 0}
+    ThirdPartyNoticesFile: {fileID: 0}
+    IsLocalPackages: 1
+    IsInRuntime: 1
+  - Id: jp.links1536.aria-logging
+    Name: Aria Logging
+    CopyrightList:
+    - links1536
+    PackagePath: Packages/jp.links1536.aria-logging
+    LicenseType: 
+    LicenseFile: {fileID: 0}
+    ThirdPartyNoticesFile: {fileID: 0}
+    IsLocalPackages: 1
+    IsInRuntime: 1
+  - Id: jp.links1536.aria-graphics
+    Name: Aria Graphics
+    CopyrightList:
+    - links1536
+    PackagePath: Packages/jp.links1536.aria-graphics
+    LicenseType: 
+    LicenseFile: {fileID: 0}
+    ThirdPartyNoticesFile: {fileID: 4900000, guid: 2502224a52559644ca797ebe1f83c52f, type: 3}
+    IsLocalPackages: 1
+    IsInRuntime: 1
+  m_NuGetPackages:
+  - Id: Microsoft.Bcl.AsyncInterfaces
+    Name: Microsoft.Bcl.AsyncInterfaces
+    CopyrightList:
+    - "\xA9 Microsoft Corporation. All rights reserved."
+    PackagePath: Assets/Packages/Microsoft.Bcl.AsyncInterfaces.8.0.0
+    LicenseType: MIT
+    LicenseFile: {fileID: 4900000, guid: 44caa904a05541248b6c3db90991b1c0, type: 3}
+    ThirdPartyNoticesFile: {fileID: 4900000, guid: 9f0041e43c5602b40a3574784a421300, type: 3}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: Microsoft.Bcl.TimeProvider
+    Name: Microsoft.Bcl.TimeProvider
+    CopyrightList:
+    - "\xA9 Microsoft Corporation. All rights reserved."
+    PackagePath: Assets/Packages/Microsoft.Bcl.TimeProvider.8.0.0
+    LicenseType: MIT
+    LicenseFile: {fileID: 4900000, guid: d973940b39801e740960c5711b4fb9ec, type: 3}
+    ThirdPartyNoticesFile: {fileID: 4900000, guid: 5e508048bbe2b72429e565e8828e9705, type: 3}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: Microsoft.Extensions.DependencyInjection
+    Name: Microsoft.Extensions.DependencyInjection
+    CopyrightList:
+    - "\xA9 Microsoft Corporation. All rights reserved."
+    PackagePath: Assets/Packages/Microsoft.Extensions.DependencyInjection.10.0.9
+    LicenseType: MIT
+    LicenseFile: {fileID: 0}
+    ThirdPartyNoticesFile: {fileID: 4900000, guid: cdb2957f78b4fc141a6eb88938c4097a, type: 3}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: Microsoft.Extensions.DependencyInjection.Abstractions
+    Name: Microsoft.Extensions.DependencyInjection.Abstractions
+    CopyrightList:
+    - "\xA9 Microsoft Corporation. All rights reserved."
+    PackagePath: Assets/Packages/Microsoft.Extensions.DependencyInjection.Abstractions.10.0.9
+    LicenseType: MIT
+    LicenseFile: {fileID: 0}
+    ThirdPartyNoticesFile: {fileID: 4900000, guid: 9327ddeeff7fc734983ffb59e77f414d, type: 3}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: Microsoft.Extensions.Logging
+    Name: Microsoft.Extensions.Logging
+    CopyrightList:
+    - "\xA9 Microsoft Corporation. All rights reserved."
+    PackagePath: Assets/Packages/Microsoft.Extensions.Logging.10.0.9
+    LicenseType: MIT
+    LicenseFile: {fileID: 0}
+    ThirdPartyNoticesFile: {fileID: 4900000, guid: d51ac03282cbdf547984a953ed3c3baf, type: 3}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: Microsoft.Extensions.Logging.Abstractions
+    Name: Microsoft.Extensions.Logging.Abstractions
+    CopyrightList:
+    - "\xA9 Microsoft Corporation. All rights reserved."
+    PackagePath: Assets/Packages/Microsoft.Extensions.Logging.Abstractions.10.0.9
+    LicenseType: MIT
+    LicenseFile: {fileID: 0}
+    ThirdPartyNoticesFile: {fileID: 4900000, guid: e4767cdcf2301cf4a87d1d68390b5543, type: 3}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: Microsoft.Extensions.Options
+    Name: Microsoft.Extensions.Options
+    CopyrightList:
+    - "\xA9 Microsoft Corporation. All rights reserved."
+    PackagePath: Assets/Packages/Microsoft.Extensions.Options.10.0.9
+    LicenseType: MIT
+    LicenseFile: {fileID: 0}
+    ThirdPartyNoticesFile: {fileID: 4900000, guid: e358698bd559f7a4cb3f2fe1ce2e269b, type: 3}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: Microsoft.Extensions.Primitives
+    Name: Microsoft.Extensions.Primitives
+    CopyrightList:
+    - "\xA9 Microsoft Corporation. All rights reserved."
+    PackagePath: Assets/Packages/Microsoft.Extensions.Primitives.10.0.9
+    LicenseType: MIT
+    LicenseFile: {fileID: 0}
+    ThirdPartyNoticesFile: {fileID: 4900000, guid: 2a9d25fbf26d12a42ac477a033151c31, type: 3}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: System.Collections.Immutable
+    Name: System.Collections.Immutable
+    CopyrightList:
+    - "\xA9 Microsoft Corporation. All rights reserved."
+    PackagePath: Assets/Packages/System.Collections.Immutable.8.0.0
+    LicenseType: MIT
+    LicenseFile: {fileID: 4900000, guid: 5c9a0f8f1fb66cc4f882188388119d89, type: 3}
+    ThirdPartyNoticesFile: {fileID: 4900000, guid: ce61b55c3ccbd8549987e093fb1a2ef9, type: 3}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: System.ComponentModel.Annotations
+    Name: System.ComponentModel.Annotations
+    CopyrightList:
+    - "\xA9 Microsoft Corporation. All rights reserved."
+    PackagePath: Assets/Packages/System.ComponentModel.Annotations.5.0.0
+    LicenseType: MIT
+    LicenseFile: {fileID: 4900000, guid: 77af6cb179dec3548a7ba91158b9dfa5, type: 3}
+    ThirdPartyNoticesFile: {fileID: 4900000, guid: 57413e29f7ee9944dbcf6bec481ab6e1, type: 3}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: System.Diagnostics.DiagnosticSource
+    Name: System.Diagnostics.DiagnosticSource
+    CopyrightList:
+    - "\xA9 Microsoft Corporation. All rights reserved."
+    PackagePath: Assets/Packages/System.Diagnostics.DiagnosticSource.10.0.9
+    LicenseType: MIT
+    LicenseFile: {fileID: 0}
+    ThirdPartyNoticesFile: {fileID: 4900000, guid: 1973f482a05658b44af53e5eb0ad20f5, type: 3}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: System.IO.Pipelines
+    Name: System.IO.Pipelines
+    CopyrightList:
+    - "\xA9 Microsoft Corporation. All rights reserved."
+    PackagePath: Assets/Packages/System.IO.Pipelines.10.0.8
+    LicenseType: MIT
+    LicenseFile: {fileID: 0}
+    ThirdPartyNoticesFile: {fileID: 4900000, guid: a4ed7b49cfffc6b42a248151451e60df, type: 3}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: System.Runtime.CompilerServices.Unsafe
+    Name: System.Runtime.CompilerServices.Unsafe
+    CopyrightList:
+    - "\xA9 Microsoft Corporation. All rights reserved."
+    PackagePath: Assets/Packages/System.Runtime.CompilerServices.Unsafe.6.1.2
+    LicenseType: MIT
+    LicenseFile: {fileID: 0}
+    ThirdPartyNoticesFile: {fileID: 0}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: System.Text.Encodings.Web
+    Name: System.Text.Encodings.Web
+    CopyrightList:
+    - "\xA9 Microsoft Corporation. All rights reserved."
+    PackagePath: Assets/Packages/System.Text.Encodings.Web.8.0.0
+    LicenseType: MIT
+    LicenseFile: {fileID: 4900000, guid: 849e3b4538d55b34f844f16782d33792, type: 3}
+    ThirdPartyNoticesFile: {fileID: 4900000, guid: 0805f9118232d1d43a975f3b9f90c258, type: 3}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: System.Text.Json
+    Name: System.Text.Json
+    CopyrightList:
+    - "\xA9 Microsoft Corporation. All rights reserved."
+    PackagePath: Assets/Packages/System.Text.Json.8.0.5
+    LicenseType: MIT
+    LicenseFile: {fileID: 4900000, guid: 9caf41d1359ad1e4b825b7d4245734af, type: 3}
+    ThirdPartyNoticesFile: {fileID: 4900000, guid: 2b16fccd02b446b4e9a89ea4db5cbc98, type: 3}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: System.Threading.Channels
+    Name: System.Threading.Channels
+    CopyrightList:
+    - "\xA9 Microsoft Corporation. All rights reserved."
+    PackagePath: Assets/Packages/System.Threading.Channels.8.0.0
+    LicenseType: MIT
+    LicenseFile: {fileID: 4900000, guid: 377bf229b7f5fc740873fc2f5a0412dc, type: 3}
+    ThirdPartyNoticesFile: {fileID: 4900000, guid: 31cc35b2a2f7e49409f96434dbe85fa3, type: 3}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: Utf8StringInterpolation
+    Name: Utf8StringInterpolation
+    CopyrightList:
+    - "\xA9 Cysharp, Inc."
+    PackagePath: Assets/Packages/Utf8StringInterpolation.1.3.1
+    LicenseType: MIT
+    LicenseFile: {fileID: 0}
+    ThirdPartyNoticesFile: {fileID: 0}
+    IsLocalPackages: 0
+    IsInRuntime: 1
+  - Id: ZLogger
+    Name: ZLogger
+    CopyrightList:
+    - "\xA9 Cysharp, Inc."
+    PackagePath: Assets/Packages/ZLogger.2.5.10
+    LicenseType: MIT
+    LicenseFile: {fileID: 0}
+    ThirdPartyNoticesFile: {fileID: 0}
+    IsLocalPackages: 0
+    IsInRuntime: 1
