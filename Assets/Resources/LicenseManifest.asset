@@ -240,8 +240,8 @@ MonoBehaviour:
       LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE,\nARISING FROM, OUT OF OR
       IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER\nDEALINGS IN THE SOFTWARE."
   - ComponentName: FXAA3_11.h (renamed to FXAA3_11.hlsl)
-    LicenseText: "License Type: FXAA3_11.h License\n\nCopyright (c) 2014-2015, NVIDIA
-      CORPORATION. All rights reserved.\n\nhttps://github.com/hghdev/NVIDIAGameWorks-GraphicsSamples/blob/master/samples/es3-kepler/FXAA/FXAA3_11.h\n\nRedistribution
+    LicenseText: "FXAA3_11.h License\n\nCopyright (c) 2014-2015, NVIDIA CORPORATION.
+      All rights reserved.\n\nhttps://github.com/hghdev/NVIDIAGameWorks-GraphicsSamples/blob/master/samples/es3-kepler/FXAA/FXAA3_11.h\n\nRedistribution
       and use in source and binary forms, with or without\nmodification, are permitted
       provided that the following conditions\nare met:\n * Redistributions of source
       code must retain the above copyright\n   notice, this list of conditions and
@@ -261,7 +261,7 @@ MonoBehaviour:
       OR TORT\n(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
       USE\nOF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
   - ComponentName: RadeonRays 4.1
-    LicenseText: 'License Type: MIT License
+    LicenseText: 'MIT License
 
 
       https://github.com/GPUOpen-LibrariesAndSDKs/RadeonRays_SDK
@@ -318,49 +318,48 @@ MonoBehaviour:
       THE
       SOFTWARE.'
   - ComponentName: Bullet Physics SDK
-    LicenseText: 'License Type: zlib License
+    LicenseText: 'zlib License
 
 
-      The files in this repository
-      are licensed under the zlib license, except for the files under ''Extras''
-      and examples/ThirdPartyLibs.
+      The files in this repository are licensed
+      under the zlib license, except for the files under ''Extras'' and examples/ThirdPartyLibs.
 
 
-      Bullet Continuous Collision Detection
-      and Physics Library
+      Bullet
+      Continuous Collision Detection and Physics Library
 
       http://bulletphysics.org
 
 
-      This software is
-      provided ''as-is'', without any express or implied warranty.
+      This
+      software is provided ''as-is'', without any express or implied warranty.
 
-      In no event
-      will the authors be held liable for any damages arising from the use of this
-      software.
+      In
+      no event will the authors be held liable for any damages arising from the use
+      of this software.
 
-      Permission is granted to anyone to use this software for any
-      purpose,
+      Permission is granted to anyone to use this software
+      for any purpose,
 
-      including commercial applications, and to alter it and redistribute
-      it freely,
+      including commercial applications, and to alter it
+      and redistribute it freely,
 
       subject to the following restrictions:
 
 
-      1. The origin
-      of this software must not be misrepresented; you must not claim that you wrote
-      the original software. If you use this software in a product, an acknowledgment
-      in the product documentation would be appreciated but is not required.
+      1.
+      The origin of this software must not be misrepresented; you must not claim
+      that you wrote the original software. If you use this software in a product,
+      an acknowledgment in the product documentation would be appreciated but is
+      not required.
 
-      2.
-      Altered source versions must be plainly marked as such, and must not be misrepresented
-      as being the original software.
+      2. Altered source versions must be plainly marked as such,
+      and must not be misrepresented as being the original software.
 
-      3. This notice may not be removed or
-      altered from any source distribution.'
+      3. This
+      notice may not be removed or altered from any source distribution.'
   - ComponentName: Sobol sampler
-    LicenseText: 'License Type: MIT License
+    LicenseText: 'MIT License
 
 
       https://github.com/lgruen/sobol
@@ -424,11 +423,11 @@ MonoBehaviour:
       ANY KIND, EXPRESS OR IMPLIED. Please review the license for details on these
       and other terms and conditions."
   - ComponentName: LLVM
-    LicenseText: "License Type: Apache 2.0 with LLVM Exceptions\n\nCopyright: The
-      LLVM project does not collect copyright assignments, which means that the copyright
-      for the code in the project is held by the respective contributors. Because
-      you (or your company) retain ownership of the code you contribute, you know
-      it may only be used under the terms of the open source license you contributed
+    LicenseText: "Apache 2.0 with LLVM Exceptions\n\nCopyright: The LLVM project
+      does not collect copyright assignments, which means that the copyright for
+      the code in the project is held by the respective contributors. Because you
+      (or your company) retain ownership of the code you contribute, you know it
+      may only be used under the terms of the open source license you contributed
       it under: the license for your contributions cannot be changed in the future
       without your approval.\n\nhttps://github.com/llvm/llvm-project/tree/main/llvm\n\nLicensed
       under the Apache License, Version 2.0 (the \"License\"); you may not use this
@@ -450,12 +449,11 @@ MonoBehaviour:
       to deem waived or otherwise exclude such Section(s) of the License, but only
       in their entirety and only with respect to the Combined Software."
   - ComponentName: Legacy LLVM License
-    LicenseText: 'License Type: The University of Illinois/NCSA Open Source License
-      (NCSA)
+    LicenseText: 'The University of Illinois/NCSA Open Source License (NCSA)
 
 
-      Copyright (c) 2007-2019 University of Illinois at Urbana-Champaign.
-      All rights reserved.
+      Copyright
+      (c) 2007-2019 University of Illinois at Urbana-Champaign. All rights reserved.
 
 
       https://llvm.org/docs/DeveloperPolicy.html#legacy
@@ -489,13 +487,13 @@ MonoBehaviour:
       IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
       WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS WITH THE SOFTWARE.'
   - ComponentName: Mono.Cecil
-    LicenseText: 'License Type: MIT
+    LicenseText: 'MIT
 
 
-      Copyright (c) 2008 - 2015 Jb Evain All
-      rights reserved.
+      Copyright (c) 2008 - 2015 Jb Evain All rights reserved.
 
-      Copyright (c) 2008 - 2011 Novell, Inc. All rights reserved.
+      Copyright
+      (c) 2008 - 2011 Novell, Inc. All rights reserved.
 
 
       [https://github.com/jbevain/cecil](https://github.com/jbevain/cecil)
@@ -550,8 +548,8 @@ MonoBehaviour:
       WITH THE SOFTWARE OR THE USE OR OTHER
       DEALINGS IN THE SOFTWARE.'
   - ComponentName: Smash
-    LicenseText: "License Type: BSD 2-Clause\n\nCopyright (c) 2021, Alexandre Mutel
-      All rights reserved.\n\n[https://github.com/xoofx/smash](https://github.com/xoofx/smash)\n\nRedistribution
+    LicenseText: "BSD 2-Clause\n\nCopyright (c) 2021, Alexandre Mutel All rights
+      reserved.\n\n[https://github.com/xoofx/smash](https://github.com/xoofx/smash)\n\nRedistribution
       and use in source and binary forms, with or without modification\n, are permitted
       provided that the following conditions are met:\n\n1. Redistributions of source
       code must retain the above copyright notice, this \n   list of conditions and
@@ -569,8 +567,8 @@ MonoBehaviour:
       TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
       \nOF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
   - ComponentName: xxHash Library
-    LicenseText: "License Type: BSD 2-Clause\n\nCopyright (c) 2012-2021, Yann Collet
-      All rights reserved.\n\n[https://github.com/Cyan4973/xxHash](https://github.com/Cyan4973/xxHash)\n\nRedistribution
+    LicenseText: "BSD 2-Clause\n\nCopyright (c) 2012-2021, Yann Collet All rights
+      reserved.\n\n[https://github.com/Cyan4973/xxHash](https://github.com/Cyan4973/xxHash)\n\nRedistribution
       and use in source and binary forms, with or without modification,\nare permitted
       provided that the following conditions are met:\n\n* Redistributions of source
       code must retain the above copyright notice, this\n  list of conditions and
@@ -951,23 +949,23 @@ MonoBehaviour:
 
       SOFTWARE.'
   - ComponentName: "SeekableAesStream.cs\r"
-    LicenseText: 'License Type: License - CC BY-SA 4.0
+    LicenseText: 'License - CC BY-SA 4.0
 
       
 
-      Copyright
-      osted by Mohammad Nikravan, modified by community. See post ''Timeline'' for
-      change history
+      Copyright osted by Mohammad
+      Nikravan, modified by community. See post ''Timeline'' for change history
 
       
 
-      Source - https://stackoverflow.com/a/38974483
+      Source
+      - https://stackoverflow.com/a/38974483
 
-      Posted
-      by Mohammad Nikravan, modified by community. See post ''Timeline'' for change
-      history
+      Posted by Mohammad Nikravan,
+      modified by community. See post ''Timeline'' for change history
 
-      Retrieved 2026-06-08, License - CC BY-SA 4.0'
+      Retrieved
+      2026-06-08, License - CC BY-SA 4.0'
   - ComponentName: ASP.NET
     LicenseText: 'Copyright (c) .NET Foundation. All rights reserved.
 

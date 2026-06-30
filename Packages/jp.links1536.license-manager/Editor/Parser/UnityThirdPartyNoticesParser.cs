@@ -18,6 +18,11 @@ namespace Links.Licenses.Parser
 			RegexOptions.Multiline | RegexOptions.Compiled
 		);
 
+		Regex m_LicenseTypeRegex = new Regex(
+			$@"^License Type:(?: )",
+			RegexOptions.Compiled
+		);
+
 		public bool IsSupportType(string name, string text)
 			=> m_SupportTypeRegex.IsMatch(text);
 
@@ -44,13 +49,19 @@ namespace Links.Licenses.Parser
 					noticeText = m_ComponentRegex.Replace(group, string.Empty, 1);
 				}
 
+				noticeText = ParserUtils.TrimLines(noticeText);
+
+				// 先頭の License Type: を削除する
+				noticeText = m_LicenseTypeRegex.Replace(noticeText, string.Empty, 1);
+				noticeText = ParserUtils.TrimLines(noticeText);
+
 				if (string.IsNullOrEmpty(noticeText))
 					continue;
 
 				list.Add(new ThirdPartyLicense()
 				{
 					Name = string.Join(", ", componentNameList),
-					Text = ParserUtils.TrimLines(noticeText),
+					Text = noticeText,
 				});
 			}
 
