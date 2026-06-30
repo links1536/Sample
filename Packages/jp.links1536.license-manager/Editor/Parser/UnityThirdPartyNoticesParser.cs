@@ -13,6 +13,11 @@ namespace Links.Licenses.Parser
 
 		static string Separator = "---------";
 
+		Regex m_ComponentRegex = new Regex(
+			$@"^(?:#\s\[(?<name>.*)\].*|Component Name:(?:\s*)(?<name>.*))$",
+			RegexOptions.Multiline | RegexOptions.Compiled
+		);
+
 		public bool IsSupportType(string name, string text)
 			=> m_SupportTypeRegex.IsMatch(text);
 
@@ -24,14 +29,28 @@ namespace Links.Licenses.Parser
 			var list = new List<ThirdPartyLicense>();
 			foreach (var group in groups.Skip(1))
 			{
-				var noticeText = ParserUtils.TrimLines(group);
+				var noticeText = group;
+
+				var nameMatches = m_ComponentRegex.Matches(group);
+				List<string> componentNameList = new List<string>();
+				foreach (Match match in nameMatches)
+				{
+					if (!match.Success)
+						continue;
+					string name = match.Groups["name"]?.Value;
+					if (string.IsNullOrEmpty(name))
+						continue;
+					componentNameList.Add(name);
+					noticeText = m_ComponentRegex.Replace(group, string.Empty, 1);
+				}
 
 				if (string.IsNullOrEmpty(noticeText))
 					continue;
 
 				list.Add(new ThirdPartyLicense()
 				{
-					Text = noticeText,
+					Name = string.Join(", ", componentNameList),
+					Text = ParserUtils.TrimLines(noticeText),
 				});
 			}
 

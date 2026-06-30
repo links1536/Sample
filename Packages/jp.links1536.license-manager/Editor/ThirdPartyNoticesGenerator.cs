@@ -63,7 +63,7 @@ namespace Links.Licenses
 					{
 						if (!IsUnityCompanionLicense(entry.LicenseFile.text, isRuntimeManifest))
 						{
-							AddRaw(licenseDict, $"・{entry.Id}\n{entry.LicenseFile.text}");
+							AddRaw(licenseDict, entry.Id, entry.LicenseFile.text);
 						}
 					}
 				}
@@ -80,7 +80,7 @@ namespace Links.Licenses
 							{
 								if (thirdPartyEntry == null)
 									continue;
-								AddRaw(licenseDict, thirdPartyEntry.Text);
+								AddRaw(licenseDict, thirdPartyEntry.Name, thirdPartyEntry.Text);
 							}
 						}
 					}
@@ -168,17 +168,18 @@ namespace Links.Licenses
 			return null;
 		}
 
-		static void AddRaw(Dictionary<string, LicenseManifest.RawLicenseEntry> dict, string text)
+		static void AddRaw(Dictionary<string, LicenseManifest.RawLicenseEntry> dict,　string name, string text)
 		{
 			text = ParserUtils.TrimLines(text);
 
-			if (!dict.TryGetValue(text, out var entry))
+			if (!dict.TryGetValue(name, out var entry))
 			{
 				entry = new LicenseManifest.RawLicenseEntry
 				{
+					ComponentName = name,
 					LicenseText = text,
 				};
-				dict[text] = entry;
+				dict[name] = entry;
 			}
 		}
 

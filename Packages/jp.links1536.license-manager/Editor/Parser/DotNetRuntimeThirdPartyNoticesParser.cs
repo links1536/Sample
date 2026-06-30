@@ -30,13 +30,15 @@ namespace Links.Licenses.Parser
 			var list = new List<ThirdPartyLicense>();
 			foreach (Match match in matches)
 			{
-				var noticeText = ParserUtils.TrimLines(match.Value);
+				var name = ParserUtils.TrimLines(match.Groups["name"].Value);
+				var noticeText = ParserUtils.TrimLines(match.Groups["text"].Value);
 
-				if (string.IsNullOrEmpty(noticeText))
+				if (string.IsNullOrEmpty(name) && string.IsNullOrEmpty(noticeText))
 					continue;
 
 				list.Add(new ThirdPartyLicense()
 				{
+					Name = name,
 					Text = noticeText,
 				});
 			}

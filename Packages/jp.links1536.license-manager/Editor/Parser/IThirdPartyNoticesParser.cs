@@ -6,6 +6,7 @@ namespace Links.Licenses.Parser
 	[DebuggerDisplay("{LicenseText}")]
 	public class ThirdPartyLicense
 	{
+		public string Name;
 		public string Text;
 	}
 

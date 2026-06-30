@@ -82,13 +82,13 @@ namespace Links.Licenses.Packages.NuGet
 
 		static string ReadElementValue(XElement element)
 		{
-			var value = element?.Value?.Trim();
+			var value = Parser.ParserUtils.TrimLines(element?.Value);
 			return string.IsNullOrWhiteSpace(value) ? null : value;
 		}
 
 		static string ReadAttribute(XElement element, XName name)
 		{
-			var value = element?.Attribute(name)?.Value?.Trim();
+			var value = Parser.ParserUtils.TrimLines(element?.Attribute(name)?.Value);
 			return string.IsNullOrWhiteSpace(value) ? null : value;
 		}
 	}

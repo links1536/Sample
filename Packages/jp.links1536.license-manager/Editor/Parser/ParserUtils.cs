@@ -5,6 +5,8 @@
 		static char[] Lines = new char[] { '\r', '\n' };
 
 		public static string TrimLines(string text)
-			=> text.TrimStart(Lines).TrimEnd(Lines);
+			=> !string.IsNullOrWhiteSpace(text)
+			? text.TrimStart(Lines).TrimEnd(Lines)
+			: text;
 	}
 }
