@@ -38,6 +38,7 @@ namespace Links.Licenses
 
 		public static (List<LicenseManifest.SpdxLicenseEntry> spdxList, List<LicenseManifest.RawLicenseEntry> rawList) CreateLicenseManifest(IEnumerable<LicenseSettings.Entry> list, bool isRuntimeManifest)
 		{
+			var unityLicenseList = new List<(string Name, string Text)>();
 			var spdxList = new List<LicenseManifest.SpdxLicenseEntry>();
 			var licenseDict = new Dictionary<string, LicenseManifest.RawLicenseEntry>();
 			foreach (var entry in list)
@@ -61,10 +62,10 @@ namespace Links.Licenses
 				{
 					if (entry.LicenseFile != null && !string.IsNullOrEmpty(entry.LicenseFile.text))
 					{
-						if (!IsUnityCompanionLicense(entry.LicenseFile.text, isRuntimeManifest))
-						{
+						if (IsUnityCompanionLicense(entry.LicenseFile.text))
+							unityLicenseList.Add((entry.Id, entry.LicenseFile.text));
+						else
 							AddRaw(licenseDict, entry.Id, entry.LicenseFile.text);
-						}
 					}
 				}
 
@@ -76,12 +77,12 @@ namespace Links.Licenses
 					{
 						foreach (var thirdPartyEntry in thirdPartyList)
 						{
-							if (!IsUnityCompanionLicense(thirdPartyEntry.Text, isRuntimeManifest))
-							{
-								if (thirdPartyEntry == null)
-									continue;
+							if (thirdPartyEntry == null)
+								continue;
+							if (IsUnityCompanionLicense(thirdPartyEntry.Text))
+								unityLicenseList.Add((thirdPartyEntry.Name, thirdPartyEntry.Text));
+							else
 								AddRaw(licenseDict, thirdPartyEntry.Name, thirdPartyEntry.Text);
-							}
 						}
 					}
 					else
@@ -90,6 +91,11 @@ namespace Links.Licenses
 					}
 				}
 			}
+
+			// Unityのライセンスは最後にまとめて
+			unityLicenseList.Sort((x, y) => x.Name.CompareTo(y.Name));
+			foreach (var unityLicense in unityLicenseList)
+				AddRaw(licenseDict, unityLicense.Name, unityLicense.Text);
 
 			var licenseList = licenseDict.Values.ToList();
 			//licenseList.Sort((x, y) => x.Name.CompareTo(y.Name));
@@ -183,9 +189,8 @@ namespace Links.Licenses
 			}
 		}
 
-		static bool IsUnityCompanionLicense(string text, bool isRuntimeManifest)
-			=> isRuntimeManifest
-			&& text.Contains("Licensed under the Unity Companion License for Unity-dependent projects", StringComparison.CurrentCultureIgnoreCase);
+		static bool IsUnityCompanionLicense(string text)
+			=> text.Contains("Licensed under the Unity Companion License for Unity-dependent projects", StringComparison.CurrentCultureIgnoreCase);
 
 	}
 }

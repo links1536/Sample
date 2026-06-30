@@ -3356,3 +3356,103 @@ MonoBehaviour:
       OR CONDITIONS OF ANY KIND, either express or implied.\r\n   See the License
       for the specific language governing permissions and\r\n   limitations under
       the License."
+  - ComponentName: com.unity.ai.navigation
+    LicenseText: "com.unity.ai.navigation copyright \xA9 2016 Unity Technologies
+      ApS\n\nLicensed under the Unity Companion License for Unity-dependent projects
+      (see https://unity3d.com/legal/licenses/unity_companion_license).\n\nUnless
+      expressly provided otherwise, the Software under this license is made available
+      strictly on an \u201CAS IS\u201D BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS
+      OR IMPLIED. Please review the license for details on these and other terms
+      and conditions."
+  - ComponentName: com.unity.collections
+    LicenseText: "com.unity.collections copyright \xA9 2024 Unity Technologies\n\nLicensed
+      under the Unity Companion License for Unity-dependent projects (see https://unity3d.com/legal/licenses/unity_companion_license).\n\nUnless
+      expressly provided otherwise, the Software under this license is made available
+      strictly on an \u201CAS IS\u201D BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS
+      OR IMPLIED. Please review the license for details on these and other terms
+      and conditions."
+  - ComponentName: com.unity.inputsystem
+    LicenseText: "com.unity.inputsystem copyright \xA9 2024 Unity Technologies\n\nLicensed
+      under the Unity Companion License for Unity-dependent projects (see [https://unity3d.com/legal/licenses/unity_companion_license](https://unity3d.com/legal/licenses/unity_companion_license)).\n\nUnless
+      expressly provided otherwise, the Software under this license is made available
+      strictly on an \u201CAS IS\u201D BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS
+      OR IMPLIED. Please review the license for details on these and other terms
+      and conditions."
+  - ComponentName: com.unity.mathematics
+    LicenseText: "com.unity.mathematics copyright \xA9 2023 Unity Technologies ApS\n\nLicensed
+      under the Unity Companion License for Unity-dependent projects (see https://unity3d.com/legal/licenses/unity_companion_license).\nUnless
+      expressly provided otherwise, the Software under this license is made available
+      strictly on an \u201CAS IS\u201D BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS
+      OR IMPLIED. Please review the license for details on these and other terms
+      and conditions."
+  - ComponentName: com.unity.render-pipelines.core
+    LicenseText: "com.unity.render-pipelines.core copyright \xA9 2020 Unity Technologies
+      ApS\n\nLicensed under the Unity Companion License for Unity-dependent projects--see
+      [Unity Companion License](http://www.unity3d.com/legal/licenses/Unity_Companion_License).\n\nUnless
+      expressly provided otherwise, the Software under this license is made available
+      strictly on an \u201CAS IS\u201D BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS
+      OR IMPLIED. Please review the license for details on these and other terms
+      and conditions."
+  - ComponentName: com.unity.render-pipelines.universal
+    LicenseText: "com.unity.render-pipelines.universal copyright \xA9 2020 Unity
+      Technologies ApS\n\nLicensed under the Unity Companion License for Unity-dependent
+      projects--see [Unity Companion License](http://www.unity3d.com/legal/licenses/Unity_Companion_License).\n\nUnless
+      expressly provided otherwise, the Software under this license is made available
+      strictly on an \u201CAS IS\u201D BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS
+      OR IMPLIED. Please review the license for details on these and other terms
+      and conditions."
+  - ComponentName: com.unity.render-pipelines.universal - UberPost.shader (modified)
+    LicenseText: "Unity Companion License v1.4 \n\nCopyright com.unity.render-pipelines.universal
+      copyright \xA9 2020 Unity Technologies ApS\n\nLicensed under the Unity Companion
+      License for Unity-dependent projects--see [Unity Companion License](http://www.unity3d.com/legal/licenses/Unity_Companion_License).\n\nUnless
+      expressly provided otherwise, the Software under this license is made available
+      strictly on an \u201CAS IS\u201D BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS
+      OR IMPLIED. Please review the license for details on these and other terms
+      and conditions."
+  - ComponentName: com.unity.render-pipelines.universal-config
+    LicenseText: "com.unity.render-pipelines.universal-config copyright \xA9 2020
+      Unity Technologies ApS\n\nLicensed under the Unity Companion License for Unity-dependent
+      projects--see [Unity Companion License](http://www.unity3d.com/legal/licenses/Unity_Companion_License).\n\nUnless
+      expressly provided otherwise, the Software under this license is made available
+      strictly on an \u201CAS IS\u201D BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS
+      OR IMPLIED. Please review the license for details on these and other terms
+      and conditions."
+  - ComponentName: com.unity.scriptablebuildpipeline
+    LicenseText: "Scriptable Build Pipeline copyright \xA9 2020 Unity Technologies
+      ApS\n\nLicensed under the Unity Companion License for Unity-dependent projects--see
+      [Unity Companion License](http://www.unity3d.com/legal/licenses/Unity_Companion_License).\n\nUnless
+      expressly provided otherwise, the Software under this license is made available
+      strictly on an \u201CAS IS\u201D BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS
+      OR IMPLIED. Please review the license for details on these and other terms
+      and conditions."
+  - ComponentName: com.unity.shadergraph
+    LicenseText: "com.unity.shadergraph copyright \xA9 2020 Unity Technologies ApS\n\nLicensed
+      under the Unity Companion License for Unity-dependent projects--see [Unity
+      Companion License](http://www.unity3d.com/legal/licenses/Unity_Companion_License).\n\nUnless
+      expressly provided otherwise, the Software under this license is made available
+      strictly on an \u201CAS IS\u201D BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS
+      OR IMPLIED. Please review the license for details on these and other terms
+      and conditions."
+  - ComponentName: com.unity.splines
+    LicenseText: "Splines copyright \xA9 2024 Unity Technologies ApS\n\nLicensed
+      under the Unity Companion License for Unity-dependent projects--see [Unity
+      Companion License](http://www.unity3d.com/legal/licenses/Unity_Companion_License).\n\nUnless
+      expressly provided otherwise, the Software under this license is made available
+      strictly on an \u201CAS IS\u201D BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS
+      OR IMPLIED. Please review the license for details on these and other terms
+      and conditions."
+  - ComponentName: com.unity.timeline
+    LicenseText: "Timeline copyright \xA9 2023 Unity Technologies\n\nLicensed under
+      the Unity Companion License for Unity-dependent projects--see [Unity Companion
+      License](http://www.unity3d.com/legal/licenses/Unity_Companion_License).\n\nUnless
+      expressly provided otherwise, the Software under this license is made available
+      strictly on an \u201CAS IS\u201D BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS
+      OR IMPLIED. Please review the license for details on these and other terms
+      and conditions."
+  - ComponentName: com.unity.ugui
+    LicenseText: "uGUI Copyright \xA9 2015-2020 Unity Technologies ApS (\"**_Unity_**\")\n\nLicensed
+      under the Unity Companion License for Unity-dependent projects (see https://unity3d.com/legal/licenses/unity_companion_license).\n\n_Unless
+      expressly provided otherwise, the Software under this license is made available
+      strictly on an \u201CAS IS\u201D BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS
+      OR IMPLIED. Please review the license for details on these and other terms
+      and conditions."
