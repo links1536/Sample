@@ -1,0 +1,116 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+
+struct GrassInstanceData
+{
+	float positionX;
+	float positionY;
+	float positionZ;
+
+	float sinY;
+	float cosY;
+
+	float scaleXZ;
+	float scaleY;
+
+	float animationTimeOffset;
+
+	// ライトプローブからサンプリングした色をもたせるとか？
+};
+
+// xyz: normal, w: distance
+float4 _FrustumPlanes[6];
+
+float3 _CameraPositionWS;
+
+float3 _BoundsCenter;
+float  _BoundsRadius;
+
+float3 _LodDistance;
+int _SupportLodLevel;
+float _LodFadeDistance;
+
+StructuredBuffer<GrassInstanceData> _GrassInstanceDataBuffer;
+
+AppendStructuredBuffer<uint> _Lod0InstanceIdBuffer;
+AppendStructuredBuffer<uint> _Lod1InstanceIdBuffer;
+AppendStructuredBuffer<uint> _Lod2InstanceIdBuffer;
+
+float GetDistanceToPoint(float4 plane, float3 positionWS)
+{
+	return dot(plane.xyz, positionWS) + plane.w;
+}
+ 
+bool TryCullSphere(float4 planes[6], float3 centerWS, float radius)
+{
+#if 1
+	float dist01 = min(GetDistanceToPoint(planes[0], centerWS), GetDistanceToPoint(planes[1], centerWS));
+	float dist23 = min(GetDistanceToPoint(planes[2], centerWS), GetDistanceToPoint(planes[3], centerWS));
+	float dist45 = min(GetDistanceToPoint(planes[4], centerWS), GetDistanceToPoint(planes[5], centerWS));
+	return (min(min(dist01, dist23), dist45) + radius) > 0;
+#else
+	for (int i = 0; i < 6; i++)
+	{
+		float distanceToPlane = GetDistanceToPoint(planes[i], centerWS);
+		if (distanceToPlane < -radius)
+		{
+			return false;
+		}
+	}
+	return true;
+#endif
+}
+
+float3 TransformObjectToWorld(GrassInstanceData grassInstance)
+{
+	return float3(
+		grassInstance.positionX + (_BoundsCenter.x * grassInstance.cosY + _BoundsCenter.z * grassInstance.sinY) * grassInstance.scaleXZ,
+		grassInstance.positionY + (_BoundsCenter.y) * grassInstance.scaleY,
+		grassInstance.positionZ + (-_BoundsCenter.x * grassInstance.sinY + _BoundsCenter.z * grassInstance.cosY) * grassInstance.scaleXZ
+	);
+}
+
+[numthreads(64, 1, 1)]
+void CSMain (uint3 instanceId : SV_DispatchThreadID)
+{
+	// 配列サイズ取得
+	uint grassLength;
+	uint stride;
+	_GrassInstanceDataBuffer.GetDimensions(grassLength, stride);
+
+	uint grassInstanceIndex = instanceId.x;
+	if (grassLength <= grassInstanceIndex)
+		return;
+
+	GrassInstanceData grassInstance = _GrassInstanceDataBuffer[grassInstanceIndex];
+	float3 centerWS = TransformObjectToWorld(grassInstance);
+
+	float radius = _BoundsRadius * max(grassInstance.scaleXZ, grassInstance.scaleY);
+
+	// 球体でカリング
+	if (!TryCullSphere(_FrustumPlanes, centerWS, radius)) {
+		return;
+	}
+
+	// 近い順にチェックして、どの範囲にも当てはまらないなら、遠距離として完全にカリングされる
+	// クロスフェードさせたいので一部被らせる
+	float cameraDistance = distance(centerWS, _CameraPositionWS);
+	float near = cameraDistance - radius;
+	float far = cameraDistance + radius;
+	if (1 <= _SupportLodLevel && far <= _LodDistance[0]) {
+		_Lod0InstanceIdBuffer.Append(grassInstanceIndex);
+		if (2 <= _SupportLodLevel && (_LodDistance[0] - _LodFadeDistance) < near )
+			_Lod1InstanceIdBuffer.Append(grassInstanceIndex);
+		return;
+	}
+	else if (2 <= _SupportLodLevel && far <= _LodDistance[1]) {
+		_Lod1InstanceIdBuffer.Append(grassInstanceIndex);
+		if (3 <= _SupportLodLevel && (_LodDistance[1] - _LodFadeDistance) < near )
+			_Lod2InstanceIdBuffer.Append(grassInstanceIndex);
+		return;
+	}
+	else if (3 <= _SupportLodLevel && far <= _LodDistance[2]) {
+		_Lod2InstanceIdBuffer.Append(grassInstanceIndex);
+		return;
+	}
+}
