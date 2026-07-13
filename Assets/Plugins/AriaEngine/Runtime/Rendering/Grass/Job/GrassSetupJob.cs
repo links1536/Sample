@@ -11,10 +11,10 @@ namespace AriaEngine.Rendering.Grass.Job
 
 		public uint RandomSeed;
 
-		public Vector3 Center;
-		public Vector3 Size;
+		public float3 Center;
+		public float3 Size;
 
-		public Vector2Int Grid;
+		public int2 Grid;
 
 		public int LayerMask;
 

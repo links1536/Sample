@@ -22,6 +22,8 @@ namespace AriaEngine.Rendering.Grass
 	[StructLayout(LayoutKind.Sequential)]
 	struct GrassInstanceData
 	{
+		public static int Size = UnsafeUtility.SizeOf<GrassInstanceData>();
+
 		public float PositionX;
 		public float PositionY;
 		public float PositionZ;
@@ -39,6 +41,8 @@ namespace AriaEngine.Rendering.Grass
 
 	class GrassChunk
 	{
+		public static int InstanceMax = 1000;
+
 		GraphicsBuffer? m_GrassInstanceDataBuffer;
 		GraphicsBuffer[]? m_LodInstanceIdBuffers;
 		GraphicsBuffer[]? m_IndirectDrawArgsBuffers;

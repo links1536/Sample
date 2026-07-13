@@ -5,6 +5,7 @@ using Aria.Engine;
 using AriaEngine.Rendering.Grass.Job;
 using Unity.Collections;
 using Unity.Jobs;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -108,23 +109,51 @@ namespace AriaEngine.Rendering.Grass
 			if (m_ChunkList != null && m_ChunkList.Count > 0)
 				return;
 
-			int maxLodLevel = Mathf.Min(SupportLodLevelMax, m_GrassLodSettings.Length);
+			// Listがnullだと都合が悪いので先にリストを作る
+			m_ChunkList ??= new List<GrassChunk>();
+			m_VisibleChunkList ??= new List<GrassChunk>();
 
-			// TODO: 描画効率やGraphisBufferのサイズには上限の問題があるため、インスタンス数に応じてチャンクを自動分割する
+			// 描画効率やGraphisBufferのサイズには上限の問題があるため、インスタンス数に応じてチャンクを自動分割する
+			int instanceMaxPerChunk = (int)(SystemInfo.maxGraphicsBufferSize / GrassInstanceData.Size);
+			instanceMaxPerChunk = Mathf.Min(GrassChunk.InstanceMax, instanceMaxPerChunk);
+			int chunkInstanceSqrt = (int)Mathf.Sqrt(instanceMaxPerChunk);
 
-			var grid = new Vector2Int(
+			var areaSize = (float3)m_AreaSize;
+			var grid = math.int2(
 				Mathf.CeilToInt(m_AreaSize.x * m_Density),
 				Mathf.CeilToInt(m_AreaSize.z * m_Density)
 			);
-			int capacity = grid.x * grid.y;
 
-			m_ChunkList ??= new List<GrassChunk>();
-			m_ChunkList.Add(CreateChunk(capacity, transform.position, m_AreaSize, grid));
+			if (grid.x <= 0 || grid.y <= 0)
+				return;
 
-			m_VisibleChunkList ??= new List<GrassChunk>();
+			var chunkCount = (int2)math.ceil((float2)grid / chunkInstanceSqrt);
+			var chunkGrid = (int2)math.floor((float2)grid / chunkCount);
+			var chunkAreaSize = math.float3(
+				areaSize.x / (chunkCount.x + 1),
+				areaSize.y,
+				areaSize.z / (chunkCount.y + 1)
+			);
+
+			int grassInstanceCount = chunkGrid.x * chunkGrid.y;
+
+			float3 areaOrigin = (float3)transform.position - math.float3(m_AreaSize.x * 0.5f, 0f, m_AreaSize.z * 0.5f);
+			for (int x = 0; x < chunkCount.x; x++)
+			{
+				for (int y = 0; y < chunkCount.y; y++)
+				{
+					var chunkPosition = areaOrigin + math.float3(
+						(x * chunkAreaSize.x) + (chunkAreaSize.x * 0.5f),
+						0f,
+						(y * chunkAreaSize.z) + (chunkAreaSize.z * 0.5f)
+					);
+
+					m_ChunkList.Add(CreateChunk(grassInstanceCount, chunkPosition, chunkAreaSize, chunkGrid));
+				}
+			}
 		}
 
-		GrassChunk CreateChunk(int grassInstanceCount, Vector3 center, Vector3 areaSize, Vector2Int placementGrid)
+		GrassChunk CreateChunk(int grassInstanceCount, float3 center, float3 areaSize, int2 placementGrid)
 		{
 			using var raycastCommands = new NativeArray<RaycastCommand>(grassInstanceCount, Allocator.TempJob);
 			using var raycastHits = new NativeArray<RaycastHit>(grassInstanceCount, Allocator.TempJob);
