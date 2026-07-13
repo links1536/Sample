@@ -130,9 +130,9 @@ namespace AriaEngine.Rendering.Grass
 			var chunkCount = (int2)math.ceil((float2)grid / chunkInstanceSqrt);
 			var chunkGrid = (int2)math.floor((float2)grid / chunkCount);
 			var chunkAreaSize = math.float3(
-				areaSize.x / (chunkCount.x + 1),
+				areaSize.x / chunkCount.x,
 				areaSize.y,
-				areaSize.z / (chunkCount.y + 1)
+				areaSize.z / chunkCount.y
 			);
 
 			int grassInstanceCount = chunkGrid.x * chunkGrid.y;
