@@ -38,9 +38,9 @@ namespace AriaEngine.Rendering.Grass.Job
 
 				// レイを上から打ち下ろす
 				var position = new Vector3(
-					Mathf.Lerp(min.x, max.x, Mathf.InverseLerp(0, Grid.x - 1, x)),
+					Mathf.Lerp(min.x, max.x, (x + 0.5f) / Grid.x),
 					max.y,
-					Mathf.Lerp(min.z, max.z, Mathf.InverseLerp(0, Grid.y - 1, z))
+					Mathf.Lerp(min.z, max.z, (z + 0.5f) / Grid.y)
 				);
 				RaycastCommands[i] = new RaycastCommand(position, Vector3.down, new QueryParameters(layerMask: LayerMask), distance: Size.y);
 			}
