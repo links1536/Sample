@@ -211,7 +211,7 @@ Shader "Aria/Map/GrassIndirect"
 
 				uint grassId = _CurrentLodInstanceIdBuffer[input.instanceID];
 				GrassInstanceData grassInstance = _GrassInstanceDataBuffer[grassId];
-				VertexPositionInputs vertexInput = GetVertexPositionInputsCustom(input.positionOS, heightMask, grassInstance);
+				VertexPositionInputs vertexInput = GetVertexPositionInputsCustom(input.positionOS.xyz, heightMask, grassInstance);
 				
 				half3 normalWS = half3(0, 1, 0);
 
@@ -378,7 +378,7 @@ Shader "Aria/Map/GrassIndirect"
 
 				uint grassId = _CurrentLodInstanceIdBuffer[input.instanceID];
 				GrassInstanceData grassInstance = _GrassInstanceDataBuffer[grassId];
-				float3 positionWS = TransformObjectToWorldCustom(input.positionOS, grassInstance);
+				float3 positionWS = TransformObjectToWorldCustom(input.positionOS.xyz, grassInstance);
 				positionWS = SimulateWind(positionWS, heightMask, grassInstance);
 				
 			#if _CASTING_PUNCTUAL_LIGHT_SHADOW
