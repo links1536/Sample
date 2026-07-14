@@ -1563,6 +1563,77 @@ Transform:
   - {fileID: 717152786}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1565186228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1565186230}
+  - component: {fileID: 1565186229}
+  m_Layer: 0
+  m_Name: GrassRenderer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1565186229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565186228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7430b3e65ce7eda44bd213c159208c76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Aria.Engine.Runtime::AriaEngine.Rendering.GrassRenderer
+  m_RandomSeed: 3679971065
+  m_GrassLodSettings:
+  - Mesh: {fileID: 7878097541223996393, guid: 49d6973d3744a0b4ead6b42cc650adc4, type: 3}
+  - Mesh: {fileID: 5944955894905559811, guid: 49d6973d3744a0b4ead6b42cc650adc4, type: 3}
+  - Mesh: {fileID: -3019777240297548860, guid: 49d6973d3744a0b4ead6b42cc650adc4, type: 3}
+  m_Material: {fileID: 2100000, guid: 28545d6ab19674544b825c583ef14e60, type: 2}
+  m_RenderDistance: 150
+  m_LodDistanceRatios: {x: 0.25, y: 0.5, z: 1}
+  m_LodFadeDistance: 10
+  m_ScaleMin:
+    ScaleXZ: 0.9
+    ScaleY: 0.4
+  m_ScaleMax:
+    ScaleXZ: 1
+    ScaleY: 0.5
+  m_RenderingLayerMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_RaycastLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_AreaSize: {x: 300, y: 10, z: 300}
+  m_Density: 2
+  m_ThinningOut: 0
+  m_DrawGizmos: 1
+  m_DrawGizmosSelectOnly: 1
+  m_DrawInstanceGizmos: 0
+--- !u!4 &1565186230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565186228}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1635409448
 GameObject:
   m_ObjectHideFlags: 0
@@ -2003,3 +2074,4 @@ SceneRoots:
   - {fileID: 1357628188}
   - {fileID: 1475009835}
   - {fileID: 568305774}
+  - {fileID: 1565186230}
