@@ -1,8 +1,6 @@
-﻿using System.Text.Json;
-using Aria.Logging.Formatter;
+﻿using Aria.Logging.Formatter;
 using Microsoft.Extensions.Logging;
 using ZLogger;
-using ZLogger.Formatters;
 using ZLogger.Unity;
 
 namespace Aria.Logging
@@ -22,8 +20,8 @@ namespace Aria.Logging
 
 	public static class LoggerHandler
 	{
-		static readonly ILoggerFactory m_LoggerFactory;
-		static readonly ILogger m_Logger;
+		static ILoggerFactory m_LoggerFactory;
+		static ILogger m_Logger;
 
 		public static ILoggerFactory DefaultLoggerFactory
 			=> m_LoggerFactory;
@@ -31,8 +29,23 @@ namespace Aria.Logging
 		public static ILogger DefaultLogger
 			=> m_Logger;
 
-		static LoggerHandler()
+
+		static string LogDirectory = "./";
+
+		[UnityEngine.RuntimeInitializeOnLoadMethod(UnityEngine.RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+#if UNITY_EDITOR
+		[UnityEditor.InitializeOnLoadMethod]
+#endif
+		static void Initialize()
 		{
+#if UNITY_EDITOR
+			// エディタではカレントディレクトリ内につくる
+			LogDirectory = System.Environment.CurrentDirectory;
+#else
+			// 実行フォルダと書き込めるフォルダが違う場合
+			LogDirectory = UnityEngine.Application.persistentDataPath;
+#endif
+
 			m_LoggerFactory = LoggerFactory.Create(builder =>
 			{
 #if DEBUG
@@ -51,7 +64,7 @@ namespace Aria.Logging
 				{
 					// 従来の形式のログをファイルに吐き出す設定
 					option.UseFormatter(() => new MultiLinePlainTextFormatter());
-					option.FilePathSelector = static (timestamp, sequenceNumber) => $"Logs/{timestamp:yyyy-MM-dd}_{sequenceNumber}.txt";
+					option.FilePathSelector = static (timestamp, sequenceNumber) => $"{LogDirectory}/Logs/{timestamp:yyyy-MM-dd}_{sequenceNumber}.txt";
 					option.RollingInterval = ZLogger.Providers.RollingInterval.Month;
 					option.TimeProvider = new JstTimeProvider();
 				});
