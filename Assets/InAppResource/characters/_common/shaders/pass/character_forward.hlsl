@@ -137,9 +137,12 @@ half4 frag(Varyings input, FRONT_FACE_TYPE faceType : FRONT_FACE_SEMANTIC) : SV_
 	if (_EnableSpecular != 0) {
 		half perceptualRoughness = PerceptualSmoothnessToPerceptualRoughness(_Smoothness);
 		half roughness = max(PerceptualRoughnessToRoughness(perceptualRoughness), HALF_MIN_SQRT);
-		half specular = D_GGXNoPI(vectorData.NdotH, roughness);
-		//half specular = D_GGX(vectorData.NdotH, roughness);
-		//half specular = G_MaskingSmithGGX(vectorData.NdotH, roughness);
+		half specular = DV_SmithJointGGX(
+			vectorData.NdotH,
+			vectorData.NdotL,
+			vectorData.NdotV,
+			roughness
+		);
 		finalColor.rgb += texColor.rgb * specular * control.specularMask;
 	}
 

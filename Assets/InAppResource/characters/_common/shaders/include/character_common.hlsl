@@ -25,7 +25,7 @@ VectorData ComputeVectorData(half3 normalWS, half3 lightDirectionWS, half3 viewD
 {
 	VectorData vectorData = (VectorData)0;
 
-	vectorData.halfDirectionWS = normalize(viewDirectionWS + lightDirectionWS);
+	vectorData.halfDirectionWS = SafeNormalize(viewDirectionWS + lightDirectionWS);
 
 	vectorData.NdotL = saturate(dot(normalWS, lightDirectionWS));
 	vectorData.NdotV = saturate(dot(normalWS, viewDirectionWS));
