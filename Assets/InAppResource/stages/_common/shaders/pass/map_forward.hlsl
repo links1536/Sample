@@ -291,8 +291,11 @@ void InitializeMapSurfaceData(float2 uv, out MapSurfaceData surfaceData)
 }
 
 // フラグメントシェーダー
-half4 frag(Varyings input, half facing : VFACE) : SV_Target
+half4 frag(Varyings input, FRONT_FACE_TYPE faceType : FRONT_FACE_SEMANTIC) : SV_Target
 {
+	// 表裏の判定
+	half facing = IS_FRONT_VFACE(faceType, 1, -1);
+
 	// SurfaceData
 	MapSurfaceData surfaceData;
 	InitializeMapSurfaceData(input.uv, surfaceData);

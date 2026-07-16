@@ -96,8 +96,11 @@ VaryingsNormal vertNormal(AttributesNormal input)
 }
 
 // フラグメントシェーダー
-half4 fragNormal(VaryingsNormal input, half facing : VFACE) : SV_Target
+half4 fragNormal(VaryingsNormal input, FRONT_FACE_TYPE faceType : FRONT_FACE_SEMANTIC) : SV_Target
 {
+	// 表裏の判定
+	half facing = IS_FRONT_VFACE(faceType, 1, -1);
+
 	// sample the texture
 	half4 albedo = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, input.uv) * _Color;
 

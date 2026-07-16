@@ -62,8 +62,11 @@ Varyings vert (Attributes input)
 	return output;
 }
 
-half4 frag(Varyings input, half facing : VFACE) : SV_Target
+half4 frag(Varyings input, FRONT_FACE_TYPE faceType : FRONT_FACE_SEMANTIC) : SV_Target
 {
+	// 表裏の判定
+	half facing = IS_FRONT_VFACE(faceType, 1, -1);
+
 	// 法線取得
 	half3 normalWS = SampleNormalWS(input.uv, input.normalWS, input.tangentWS.xyz, input.tangentWS.w, facing);
 	half3 lightDirectionWS = GetLightDirectionWS(input.positionWS.xyz);
