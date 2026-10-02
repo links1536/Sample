@@ -142,26 +142,6 @@ MonoBehaviour:
   m_DepthTextureFormat: 0
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 0
---- !u!114 &1964357798329511335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc71f8160838be14a842d178144b0440, type: 3}
-  m_Name: DepthCopyDebugFeature
-  m_EditorClassIdentifier: Assembly-CSharp-firstpass::Aria.Rendering.Universal.DebugFeatures.DepthCopyDebugFeature
-  m_Active: 0
-  m_PassEvent: 600
-  m_DepthSource: 0
-  m_GlobalTextureName: _AriaDebugCopiedDepthTexture
-  m_OutputToCameraColor: 1
-  m_GlobalTextureId: 1646
-  m_CopyMaterial: {fileID: 0}
-  m_DisplayMaterial: {fileID: 0}
 --- !u!114 &7077941469384606695
 MonoBehaviour:
   m_ObjectHideFlags: 0
