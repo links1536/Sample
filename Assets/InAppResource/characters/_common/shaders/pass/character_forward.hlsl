@@ -142,7 +142,7 @@ half4 frag(Varyings input, FRONT_FACE_TYPE faceType : FRONT_FACE_SEMANTIC) : SV_
 			vectorData.NdotL,
 			vectorData.NdotV,
 			roughness
-		);
+		) * vectorData.NdotL;
 		finalColor.rgb += texColor.rgb * specular * control.specularMask;
 	}
 
