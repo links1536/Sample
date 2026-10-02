@@ -137,7 +137,7 @@ namespace Aria.Rendering.Universal.PostProcessing
 			renderer.EnqueuePass(m_PrePostProcessPass);
 			renderer.EnqueuePass(m_LatePostProcessPass);
 
-			renderer.EnqueuePass(m_DistortionPass);
+			//renderer.EnqueuePass(m_DistortionPass);
 			renderer.EnqueuePass(m_GodRayPass);
 			renderer.EnqueuePass(m_VolumetricFogPass);
 
