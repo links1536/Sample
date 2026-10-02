@@ -109,6 +109,8 @@ namespace AriaEngine.Rendering.Grass
 			if (m_ChunkList != null && m_ChunkList.Count > 0)
 				return;
 
+			Release();
+
 			// Listがnullだと都合が悪いので先にリストを作る
 			m_ChunkList ??= new List<GrassChunk>();
 			m_VisibleChunkList ??= new List<GrassChunk>();
@@ -187,10 +189,9 @@ namespace AriaEngine.Rendering.Grass
 			jobHandle = createInstanceJob.Schedule(jobHandle);
 			jobHandle.Complete();
 
-			var readonlyList = grassInstanceList.AsReadOnly();
+			var readOnlyGrassInstances = grassInstanceList.AsReadOnly();
 
-			var chunk = new GrassChunk();
-			chunk.Setup(m_GrassLodSettings, new List<GrassInstanceData>(readonlyList));
+			var chunk = new GrassChunk(m_GrassLodSettings, readOnlyGrassInstances);
 			return chunk;
 		}
 
@@ -285,14 +286,21 @@ namespace AriaEngine.Rendering.Grass
 		{
 			Setup();
 			RenderPipelineManager.beginCameraRendering += OnBeginCameraRendering;
+#if UNITY_EDITOR
+			UnityEditor.Compilation.CompilationPipeline.compilationStarted += OnCompilationStarted;
+#endif
 		}
 
 		void OnDisable()
 		{
+#if UNITY_EDITOR
+			UnityEditor.Compilation.CompilationPipeline.compilationStarted -= OnCompilationStarted;
+#endif
 			RenderPipelineManager.beginCameraRendering -= OnBeginCameraRendering;
+			Release();
 		}
 
-		void OnDestroy()
+		void OnCompilationStarted(object obj)
 		{
 			Release();
 		}

@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Unity.Collections;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -39,7 +40,7 @@ namespace AriaEngine.Rendering.Grass
 		// ライトプローブからサンプリングした色をもたせるとか？
 	}
 
-	class GrassChunk
+	class GrassChunk : IDisposable
 	{
 		public static int InstanceMax = 1000;
 
@@ -49,18 +50,27 @@ namespace AriaEngine.Rendering.Grass
 
 		IList<Matrix4x4>? m_TransformList;
 		Bounds m_WorldBounds;
+		private bool disposedValue;
 
 		public Bounds Bounds
 			=> m_WorldBounds;
 
-		public void Setup(GrassLodSetting[] grassLodSettings, IList<GrassInstanceData> grassInstanceList)
+		public GrassChunk(GrassLodSetting[] grassLodSettings, NativeArray<GrassInstanceData>.ReadOnly readOnlyGrassInstances)
 		{
-			int grassCount = grassInstanceList.Count;
+			int grassCount = readOnlyGrassInstances.Length;
 			if (grassCount <= 0)
 				return;
 
-			m_GrassInstanceDataBuffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, grassCount, UnsafeUtility.SizeOf<GrassInstanceData>());
-			m_GrassInstanceDataBuffer.SetData(grassInstanceList.ToArray());
+			m_GrassInstanceDataBuffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, GraphicsBuffer.UsageFlags.LockBufferForWrite, grassCount, UnsafeUtility.SizeOf<GrassInstanceData>());
+			var nativeGrassInstanceData = m_GrassInstanceDataBuffer.LockBufferForWrite<GrassInstanceData>(0, readOnlyGrassInstances.Length);
+			try
+			{
+				readOnlyGrassInstances.CopyTo(nativeGrassInstanceData);
+			}
+			finally
+			{
+				m_GrassInstanceDataBuffer.UnlockBufferAfterWrite<GrassInstanceData>(readOnlyGrassInstances.Length);
+			}
 
 			var lodLevelTarget = GraphicsBuffer.Target.Structured | GraphicsBuffer.Target.Append | GraphicsBuffer.Target.Counter;
 			int lodCount = grassLodSettings.Length;
@@ -92,12 +102,12 @@ namespace AriaEngine.Rendering.Grass
 				m_IndirectDrawArgsBuffers[i].SetData(indirectDrawArgs);
 			}
 
-			ComputeWorldBounds(grassLodSettings, grassInstanceList);
+			ComputeWorldBounds(grassLodSettings, readOnlyGrassInstances);
 		}
 
-		void ComputeWorldBounds(GrassLodSetting[] grassLodSettings, IList<GrassInstanceData> grassDataList)
+		void ComputeWorldBounds(GrassLodSetting[] grassLodSettings, NativeArray<GrassInstanceData>.ReadOnly readOnlyGrassInstances)
 		{
-			int grassCount = grassDataList.Count;
+			int grassCount = readOnlyGrassInstances.Length;
 			m_TransformList = new List<Matrix4x4>(grassCount);
 
 			var lod0 = grassLodSettings[0];
@@ -107,10 +117,8 @@ namespace AriaEngine.Rendering.Grass
 			var min = Vector3.zero;
 			var max = Vector3.zero;
 
-			for (int i = 0; i < grassDataList.Count; i++)
+			foreach (GrassInstanceData grassData in readOnlyGrassInstances)
 			{
-				GrassInstanceData grassData = grassDataList[i];
-
 				float eulerY = Mathf.Atan2(grassData.SinY, grassData.CosY) * Mathf.Rad2Deg;
 				if (eulerY < 0f)
 					eulerY += 360f;
@@ -212,35 +220,6 @@ namespace AriaEngine.Rendering.Grass
 			};
 		}
 
-		public void Release()
-		{
-			m_TransformList = null;
-
-			ReleaseBuffer(m_GrassInstanceDataBuffer);
-			m_GrassInstanceDataBuffer = null;
-
-			if (m_LodInstanceIdBuffers != null)
-				foreach (var buffer in m_LodInstanceIdBuffers)
-					ReleaseBuffer(buffer);
-			m_LodInstanceIdBuffers = null;
-
-			if (m_IndirectDrawArgsBuffers != null)
-				foreach (var buffer in m_IndirectDrawArgsBuffers)
-					ReleaseBuffer(buffer);
-			m_IndirectDrawArgsBuffers = null;
-		}
-
-		void ReleaseBuffer(GraphicsBuffer? buffer)
-		{
-			if (buffer != null)
-			{
-				buffer.Release();
-			}
-		}
-
-		public void Dispose()
-			=> Release();
-
 		public void DrawGizmos(Bounds lod0Bounds)
 		{
 			if (m_TransformList == null)
@@ -259,6 +238,58 @@ namespace AriaEngine.Rendering.Grass
 			{
 				Gizmos.matrix = matrix;
 			}
+		}
+
+		protected virtual void Dispose(bool disposing)
+		{
+			if (!disposedValue)
+			{
+				if (disposing)
+				{
+					// TODO: マネージド状態を破棄します (マネージド オブジェクト)
+					m_TransformList = null;
+				}
+
+				void ReleaseBuffer(GraphicsBuffer? buffer)
+				{
+					if (buffer != null)
+					{
+						buffer.Release();
+					}
+				}
+
+				// TODO: アンマネージド リソース (アンマネージド オブジェクト) を解放し、ファイナライザーをオーバーライドします
+				// TODO: 大きなフィールドを null に設定します
+
+				ReleaseBuffer(m_GrassInstanceDataBuffer);
+				m_GrassInstanceDataBuffer = null;
+
+				if (m_LodInstanceIdBuffers != null)
+					foreach (var buffer in m_LodInstanceIdBuffers)
+						ReleaseBuffer(buffer);
+				m_LodInstanceIdBuffers = null;
+
+				if (m_IndirectDrawArgsBuffers != null)
+					foreach (var buffer in m_IndirectDrawArgsBuffers)
+						ReleaseBuffer(buffer);
+				m_IndirectDrawArgsBuffers = null;
+
+				disposedValue = true;
+			}
+		}
+
+		// TODO: 'Dispose(bool disposing)' にアンマネージド リソースを解放するコードが含まれる場合にのみ、ファイナライザーをオーバーライドします
+		~GrassChunk()
+		{
+			// このコードを変更しないでください。クリーンアップ コードを 'Dispose(bool disposing)' メソッドに記述します
+			Dispose(disposing: false);
+		}
+
+		public void Dispose()
+		{
+			// このコードを変更しないでください。クリーンアップ コードを 'Dispose(bool disposing)' メソッドに記述します
+			Dispose(disposing: true);
+			GC.SuppressFinalize(this);
 		}
 	}
 }
