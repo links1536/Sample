@@ -7,10 +7,17 @@ namespace AriaEditor
 	{
 		[MenuItem("Build/Player/Windows/Debug")]
 		public static void BuildWindowsDebug()
-			=> Build(BuildTarget.StandaloneWindows64);
+			=> Build(BuildTarget.StandaloneWindows64, true, false);
+		[MenuItem("Build/Player/Windows/Debug && Play")]
+		public static void BuildWindowsDebugAndPlay()
+			=> Build(BuildTarget.StandaloneWindows64, true, true);
+
 		[MenuItem("Build/Player/Android/Debug")]
 		public static void BuildAndroidDebug()
-			=> Build(BuildTarget.Android);
+			=> Build(BuildTarget.Android, true, false);
+		[MenuItem("Build/Player/Android/Debug && Play")]
+		public static void BuildAndroidDebugAndPlay()
+			=> Build(BuildTarget.Android, true, true);
 
 		static string PlatformName(BuildTarget target)
 			=> target switch
@@ -26,7 +33,7 @@ namespace AriaEditor
 				BuildTarget.Android => ".apk",
 				_ => throw new System.PlatformNotSupportedException()
 			};
-		public static void Build(BuildTarget buildTarget)
+		public static void Build(BuildTarget buildTarget, bool development, bool autoRunPlayer)
 		{
 			// 埋め込みリソースビルド
 			if (!AriaInAppBundleBuilder.BuildBundleCore(buildTarget, false))
@@ -45,17 +52,24 @@ namespace AriaEditor
 			string exportDirectory = $"Build/{PlatformName(buildTarget)}";
 			string exportName = PlayerSettings.productName + Extension(buildTarget);
 
+			// ビルドオプション
+			BuildOptions buildOptions = BuildOptions.None;
+			if (development)
+				buildOptions |= BuildOptions.Development;
+			if (autoRunPlayer)
+				buildOptions |= BuildOptions.AutoRunPlayer;
+
 			// アプリビルド
 			var scenes = EditorBuildSettings.scenes;
-			var option = new BuildPlayerOptions()
+			var buildPlayerOptions = new BuildPlayerOptions()
 			{
 				locationPathName = System.IO.Path.Combine(System.Environment.CurrentDirectory, exportDirectory, exportName),
 				scenes = scenes.Select(x => x.path).ToArray(),
 				target = buildTarget,
 				targetGroup = BuildPipeline.GetBuildTargetGroup(buildTarget),
-				options = BuildOptions.Development,
+				options = buildOptions,
 			};
-			BuildPipeline.BuildPlayer(option);
+			BuildPipeline.BuildPlayer(buildPlayerOptions);
 		}
 	}
 }

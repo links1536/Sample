@@ -62,8 +62,11 @@ Varyings vert (Attributes input)
 	return output;
 }
 
-half4 frag(Varyings input, half facing : VFACE) : SV_Target
+half4 frag(Varyings input, FRONT_FACE_TYPE faceType : FRONT_FACE_SEMANTIC) : SV_Target
 {
+	// 表裏の判定
+	half facing = IS_FRONT_VFACE(faceType, 1, -1);
+
 	// 法線取得
 	half3 normalWS = SampleNormalWS(input.uv, input.normalWS, input.tangentWS.xyz, input.tangentWS.w, facing);
 	half3 lightDirectionWS = GetLightDirectionWS(input.positionWS.xyz);
@@ -98,9 +101,12 @@ half4 frag(Varyings input, half facing : VFACE) : SV_Target
 	if (_EnableSpecular != 0) {
 		half perceptualRoughness = PerceptualSmoothnessToPerceptualRoughness(_Smoothness);
 		half roughness = max(PerceptualRoughnessToRoughness(perceptualRoughness), HALF_MIN_SQRT);
-		half specular = D_GGXNoPI(vectorData.NdotH, roughness);
-		//half specular = D_GGX(vectorData.NdotH, roughness);
-		//half specular = G_MaskingSmithGGX(vectorData.NdotH, roughness);
+		half specular = DV_SmithJointGGX(
+			vectorData.NdotH,
+			vectorData.NdotL,
+			vectorData.NdotV,
+			roughness
+		);
 		specularIntensity += specular * specularMask;
 	}
 
